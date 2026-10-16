@@ -1,0 +1,58 @@
+name: Clean PWA v2 reset
+on:
+  push:
+    paths:
+      - '.github/workflows/pwa-v2-reset.yml'
+permissions:
+  contents: write
+jobs:
+  reset:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild PWA metadata with fresh URLs
+        run: |
+          cat > manifest-v2.webmanifest <<'EOF'
+          {
+            "id": "/",
+            "name": "PalaCelus",
+            "short_name": "PalaCelus",
+            "description": "Servicio técnico, repuestos y cotización de reparaciones en Banfield.",
+            "lang": "es-AR",
+            "start_url": "/?source=pwa",
+            "scope": "/",
+            "display": "standalone",
+            "display_override": ["window-controls-overlay", "standalone"],
+            "background_color": "#0b0d10",
+            "theme_color": "#0b0d10",
+            "prefer_related_applications": false,
+            "icons": [
+              {"src":"/pwa-ok-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+              {"src":"/pwa-ok-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+              {"src":"/pwa-ok-192.png","sizes":"192x192","type":"image/png","purpose":"maskable"},
+              {"src":"/pwa-ok-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+            ]
+          }
+          EOF
+          cat > service-worker-v2.js <<'EOF'
+          const CACHE='palacelus-v8';
+          const CORE=['/','/styles.css','/script.js','/manifest-v2.webmanifest','/pwa-ok-192.png','/pwa-ok-512.png'];
+          self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));});
+          self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
+          self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(fetch(event.request).then(response=>{if(response&&response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));}return response;}).catch(()=>caches.match(event.request).then(r=>r||caches.match('/'))));});
+          EOF
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('href="/manifest.webmanifest"','href="/manifest-v2.webmanifest"')
+          s=s.replace('href="/icon-192.png"','href="/pwa-ok-192.png"')
+          s=s.replace('navigator.serviceWorker.register("/service-worker.js")','navigator.serviceWorker.register("/service-worker-v2.js")')
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html manifest-v2.webmanifest service-worker-v2.js
+          git commit -m "Reset PWA with fresh manifest and service worker URLs"
+          git push
