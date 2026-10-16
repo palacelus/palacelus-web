@@ -20,3 +20,22 @@ if(repuestos){
   shipping.innerHTML=`<div class="container"><div class="shipping-box"><div class="shipping-info"><div class="shipping-icon">🛵</div><div><h3>Envíos rápidos en el día</h3><p>Coordinamos envíos por moto / mensajería, incluyendo Uber Moto según zona y disponibilidad. También podés retirar por Banfield.</p></div></div><a class="btn shipping-btn" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20un%20env%C3%ADo.%0AProducto%3A%20____%0ADirecci%C3%B3n%3A%20____" target="_blank" rel="noopener">Consultar envío por WhatsApp</a></div></div>`;
   repuestos.insertAdjacentElement('afterend',shipping);
 }
+
+const reviewStyle=document.createElement('style');
+reviewStyle.textContent=`.reviews-strip{padding:34px 0}.reviews-box{display:flex;align-items:center;justify-content:space-between;gap:24px;background:linear-gradient(135deg,#171717,#101010);border:1px solid #2d2d2d;border-radius:24px;padding:24px 26px;box-shadow:0 18px 50px rgba(0,0,0,.2)}.reviews-main{display:flex;align-items:center;gap:18px}.reviews-stars{font-size:28px;letter-spacing:2px;white-space:nowrap}.reviews-box h3{margin:0 0 6px;font-size:24px}.reviews-box p{margin:0;color:#aeb4bc}.reviews-btn{white-space:nowrap;background:#fff;color:#111}@media(max-width:720px){.reviews-box{align-items:flex-start;flex-direction:column}.reviews-main{align-items:flex-start}.reviews-btn{width:100%;text-align:center}}`;
+document.head.appendChild(reviewStyle);
+
+const contacto=document.getElementById('contacto');
+if(contacto){
+  const reviews=document.createElement('section');
+  reviews.className='reviews-strip';
+  reviews.innerHTML=`<div class="container"><div class="reviews-box"><div class="reviews-main"><div class="reviews-stars">⭐ ⭐ ⭐ ⭐ ⭐</div><div><h3>113 reseñas en Google</h3><p>La experiencia de nuestros clientes también habla por nosotros. Mirá las reseñas de PalaCelus en Google.</p></div></div><a class="btn reviews-btn" href="https://share.google/cJlCov9rjp5xGGMMA" target="_blank" rel="noopener">Ver reseñas en Google</a></div></div>`;
+  contacto.insertAdjacentElement('beforebegin',reviews);
+}
+
+const heroBadges=document.querySelector('.hero-badges');
+if(heroBadges){
+  const googleBadge=document.createElement('span');
+  googleBadge.textContent='⭐ 113 reseñas en Google';
+  heroBadges.appendChild(googleBadge);
+}
