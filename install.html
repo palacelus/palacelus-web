@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0d10">
+  <title>Instalar PalaCelus</title>
+  <link rel="manifest" href="/manifest-v2.webmanifest">
+  <link rel="icon" href="/pwa-ok-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/pwa-ok-192.png">
+  <style>
+    body{margin:0;background:#0b0d10;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:grid;place-items:center;min-height:100vh;padding:24px;box-sizing:border-box}
+    .card{width:min(420px,100%);background:#12161c;border:1px solid #25303a;border-radius:24px;padding:28px;box-sizing:border-box;text-align:center}
+    img{width:96px;height:96px;border-radius:22px;margin-bottom:16px}
+    h1{margin:0 0 8px;font-size:28px}
+    p{color:#aeb8c2;line-height:1.45}
+    button{width:100%;border:0;border-radius:14px;padding:15px 18px;font-size:17px;font-weight:800;background:#2dd4a7;color:#06130f;cursor:pointer;margin-top:14px}
+    button:disabled{opacity:.55;cursor:default}
+    #status{margin-top:18px;font-size:13px;color:#92a0ad;white-space:pre-line}
+    a{color:#67e8f9}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img src="/pwa-ok-192.png" alt="PalaCelus">
+    <h1>PalaCelus</h1>
+    <p>Instalá PalaCelus como una app en tu celular.</p>
+    <button id="installBtn" disabled>Preparando instalación…</button>
+    <div id="status">Comprobando PWA…</div>
+  </main>
+  <script>
+    let deferredPrompt = null;
+    const btn = document.getElementById('installBtn');
+    const status = document.getElementById('status');
+
+    async function checks(){
+      const lines=[];
+      try{
+        const r=await fetch('/manifest-v2.webmanifest',{cache:'no-store'});
+        lines.push('Manifest: '+(r.ok?'OK':'ERROR '+r.status));
+      }catch(e){lines.push('Manifest: ERROR');}
+      if('serviceWorker' in navigator){
+        try{
+          await navigator.serviceWorker.register('/service-worker-v2.js',{scope:'/'});
+          await navigator.serviceWorker.ready;
+          lines.push('Service worker: OK');
+        }catch(e){lines.push('Service worker: ERROR');}
+      }else lines.push('Service worker: no compatible');
+      lines.push('Esperando permiso de instalación de Chrome…');
+      status.textContent=lines.join('\n');
+    }
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      btn.disabled = false;
+      btn.textContent = 'Instalar PalaCelus';
+      status.textContent += '\nChrome: LISTA PARA INSTALAR';
+    });
+
+    window.addEventListener('appinstalled',()=>{
+      btn.disabled=true;
+      btn.textContent='PalaCelus instalada ✓';
+      status.textContent+='\nInstalación completada.';
+    });
+
+    btn.addEventListener('click', async()=>{
+      if(!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const choice=await deferredPrompt.userChoice;
+      status.textContent+='\nResultado: '+choice.outcome;
+      deferredPrompt=null;
+    });
+
+    checks();
+    setTimeout(()=>{
+      if(!deferredPrompt){
+        btn.disabled=true;
+        btn.textContent='Chrome todavía no habilitó instalar';
+        status.textContent+='\nSi queda así, esta pantalla nos confirma que el bloqueo viene de Chrome y no del botón.';
+      }
+    },8000);
+  </script>
+</body>
+</html>
