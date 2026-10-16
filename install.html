@@ -15,21 +15,23 @@
     h1{margin:0 0 8px;font-size:28px}
     p{color:#aeb8c2;line-height:1.45}
     button{width:100%;border:0;border-radius:14px;padding:15px 18px;font-size:17px;font-weight:800;background:#2dd4a7;color:#06130f;cursor:pointer;margin-top:14px}
-    button:disabled{opacity:.55;cursor:default}
     #status{margin-top:18px;font-size:13px;color:#92a0ad;white-space:pre-line}
-    a{color:#67e8f9}
+    .ok{color:#86efac}
   </style>
 </head>
 <body>
-  <main class="card">
+  <main class="card" id="card">
     <img src="/pwa-ok-192.png" alt="PalaCelus">
     <h1>PalaCelus</h1>
     <p>Instalá PalaCelus como una app en tu celular.</p>
-    <button id="installBtn" disabled>Preparando instalación…</button>
+    <button id="installBtn">Tocá acá para habilitar instalación</button>
     <div id="status">Comprobando PWA…</div>
   </main>
   <script>
     let deferredPrompt = null;
+    let interacted = false;
+    let startedAt = Date.now();
+    let timer = null;
     const btn = document.getElementById('installBtn');
     const status = document.getElementById('status');
 
@@ -46,40 +48,55 @@
           lines.push('Service worker: OK');
         }catch(e){lines.push('Service worker: ERROR');}
       }else lines.push('Service worker: no compatible');
-      lines.push('Esperando permiso de instalación de Chrome…');
+      lines.push('Chrome necesita 1 toque + ~30 s de uso antes de habilitar el instalador.');
       status.textContent=lines.join('\n');
+    }
+
+    function beginEngagement(){
+      if(interacted) return;
+      interacted = true;
+      startedAt = Date.now();
+      btn.textContent='Esperando a Chrome…';
+      const update=()=>{
+        if(deferredPrompt){ clearInterval(timer); return; }
+        const elapsed=Math.floor((Date.now()-startedAt)/1000);
+        const remain=Math.max(0,30-elapsed);
+        btn.textContent = remain>0 ? `Esperando a Chrome… ${remain}s` : 'Chrome está validando…';
+        if(remain===0){ status.textContent = status.textContent.replace(/\nEsperá.*$/,'') + '\nYa cumplimos el tiempo mínimo. Si Chrome habilita el evento, el botón cambia solo.'; }
+      };
+      update();
+      timer=setInterval(update,1000);
     }
 
     window.addEventListener('beforeinstallprompt', e => {
       e.preventDefault();
       deferredPrompt = e;
-      btn.disabled = false;
+      if(timer) clearInterval(timer);
       btn.textContent = 'Instalar PalaCelus';
-      status.textContent += '\nChrome: LISTA PARA INSTALAR';
+      status.textContent += '\nChrome: LISTA PARA INSTALAR ✓';
     });
 
     window.addEventListener('appinstalled',()=>{
-      btn.disabled=true;
       btn.textContent='PalaCelus instalada ✓';
       status.textContent+='\nInstalación completada.';
     });
 
     btn.addEventListener('click', async()=>{
-      if(!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const choice=await deferredPrompt.userChoice;
-      status.textContent+='\nResultado: '+choice.outcome;
-      deferredPrompt=null;
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        const choice=await deferredPrompt.userChoice;
+        status.textContent+='\nResultado: '+choice.outcome;
+        deferredPrompt=null;
+        return;
+      }
+      beginEngagement();
     });
 
+    document.getElementById('card').addEventListener('pointerdown',()=>{
+      if(!interacted) beginEngagement();
+    },{once:true});
+
     checks();
-    setTimeout(()=>{
-      if(!deferredPrompt){
-        btn.disabled=true;
-        btn.textContent='Chrome todavía no habilitó instalar';
-        status.textContent+='\nSi queda así, esta pantalla nos confirma que el bloqueo viene de Chrome y no del botón.';
-      }
-    },8000);
   </script>
 </body>
 </html>
