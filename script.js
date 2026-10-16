@@ -78,3 +78,18 @@ waFloat.rel='noopener';
 waFloat.setAttribute('aria-label','WhatsApp PalaCelus');
 waFloat.textContent='💬';
 document.body.appendChild(waFloat);
+
+// PWA: permite instalar PalaCelus como app desde Chrome.
+if(!document.querySelector('link[rel="manifest"]')){
+  const manifest=document.createElement('link');
+  manifest.rel='manifest';
+  manifest.href='/manifest.webmanifest?v=1';
+  document.head.appendChild(manifest);
+}
+let appIcon=document.querySelector('link[rel="icon"]');
+if(appIcon){appIcon.href='/icon-192.svg';appIcon.type='image/svg+xml'}
+else{appIcon=document.createElement('link');appIcon.rel='icon';appIcon.type='image/svg+xml';appIcon.href='/icon-192.svg';document.head.appendChild(appIcon)}
+const mobileCapable=document.createElement('meta');mobileCapable.name='mobile-web-app-capable';mobileCapable.content='yes';document.head.appendChild(mobileCapable);
+const appleCapable=document.createElement('meta');appleCapable.name='apple-mobile-web-app-capable';appleCapable.content='yes';document.head.appendChild(appleCapable);
+const appleTitle=document.createElement('meta');appleTitle.name='apple-mobile-web-app-title';appleTitle.content='PalaCelus';document.head.appendChild(appleTitle);
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js?v=1').catch(()=>{}));}
