@@ -1,0 +1,91 @@
+name: Final PWA icon repair
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pwa-final-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate valid PNG icons and update PWA files
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import struct, zlib, binascii, json
+
+          BG=(11,13,16)
+          GREEN=(48,210,160)
+
+          def png_chunk(tag, data):
+              return struct.pack('>I', len(data)) + tag + data + struct.pack('>I', binascii.crc32(tag + data) & 0xffffffff)
+
+          def make_png(size, path):
+              px=[list(BG) for _ in range(size*size)]
+              def put(x,y,c):
+                  if 0 <= x < size and 0 <= y < size:
+                      px[y*size+x]=list(c)
+              def rect(x0,y0,x1,y1,c):
+                  for y in range(max(0,y0), min(size,y1)):
+                      for x in range(max(0,x0), min(size,x1)):
+                          put(x,y,c)
+              # phone outline
+              m=int(size*0.22); top=int(size*0.16); bottom=int(size*0.84); t=max(6,int(size*0.035))
+              rect(m,top,size-m,top+t,GREEN)
+              rect(m,bottom-t,size-m,bottom,GREEN)
+              rect(m,top,m+t,bottom,GREEN)
+              rect(size-m-t,top,size-m,bottom,GREEN)
+              # earpiece + home mark
+              ew=int(size*0.14); eh=max(4,int(size*0.018)); ex=(size-ew)//2; ey=int(size*0.205)
+              rect(ex,ey,ex+ew,ey+eh,GREEN)
+              r=max(3,int(size*0.018)); cx=size//2; cy=int(size*0.79)
+              for yy in range(cy-r,cy+r+1):
+                  for xx in range(cx-r,cx+r+1):
+                      if (xx-cx)**2+(yy-cy)**2 <= r*r: put(xx,yy,GREEN)
+              # simple PC block glyphs, no font dependency
+              unit=max(2,size//64)
+              ox=int(size*0.37); oy=int(size*0.40); h=14*unit; w=8*unit; gap=4*unit; s=2*unit
+              # P
+              rect(ox,oy,ox+s,oy+h,GREEN); rect(ox,oy,ox+w,oy+s,GREEN); rect(ox+w-s,oy,ox+w,oy+7*unit,GREEN); rect(ox,oy+5*unit,ox+w,oy+7*unit,GREEN)
+              # C
+              cx0=ox+w+gap; rect(cx0,oy,cx0+w,oy+s,GREEN); rect(cx0,oy+h-s,cx0+w,oy+h,GREEN); rect(cx0,oy,cx0+s,oy+h,GREEN)
+
+              raw=bytearray()
+              for y in range(size):
+                  raw.append(0)
+                  for x in range(size):
+                      raw.extend(px[y*size+x])
+              data=b'\x89PNG\r\n\x1a\n'
+              data += png_chunk(b'IHDR', struct.pack('>IIBBBBB', size,size,8,2,0,0,0))
+              data += png_chunk(b'IDAT', zlib.compress(bytes(raw),9))
+              data += png_chunk(b'IEND', b'')
+              open(path,'wb').write(data)
+
+          make_png(192,'pwa-ok-192.png')
+          make_png(512,'pwa-ok-512.png')
+
+          manifest={
+            'id':'/','name':'PalaCelus','short_name':'PalaCelus',
+            'description':'Servicio técnico, repuestos y cotización de reparaciones en Banfield.',
+            'start_url':'/','scope':'/','display':'standalone',
+            'background_color':'#0b0d10','theme_color':'#0b0d10',
+            'orientation':'portrait-primary','prefer_related_applications':False,
+            'icons':[
+              {'src':'/pwa-ok-192.png','sizes':'192x192','type':'image/png','purpose':'any'},
+              {'src':'/pwa-ok-512.png','sizes':'512x512','type':'image/png','purpose':'any'}
+            ]
+          }
+          open('manifest.webmanifest','w',encoding='utf-8').write(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          sw="""const CACHE='palacelus-v7';\nconst CORE=['/','/styles.css','/script.js?v=8','/manifest.webmanifest','/pwa-ok-192.png','/pwa-ok-512.png'];\nself.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));});\nself.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});\nself.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(fetch(event.request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));return response;}).catch(()=>caches.match(event.request).then(r=>r||caches.match('/'))));});\n"""
+          open('service-worker.js','w',encoding='utf-8').write(sw)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pwa-ok-192.png pwa-ok-512.png manifest.webmanifest service-worker.js
+          git commit -m "Generate verified PWA icons and update manifest" || exit 0
+          git push
