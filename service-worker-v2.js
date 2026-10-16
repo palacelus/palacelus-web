@@ -1,11 +1,11 @@
-const CACHE = 'palacelus-pwa-v9';
+const CACHE = 'palacelus-pwa-v10';
 const CORE = [
   '/',
   '/styles.css',
   '/script.js',
   '/manifest-v2.webmanifest',
-  '/pwa-clean-192.png',
-  '/pwa-clean-512.png'
+  '/pwa-ok-192.png',
+  '/pwa-ok-512.png'
 ];
 
 self.addEventListener('install', event => {
