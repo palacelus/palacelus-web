@@ -7,8 +7,8 @@
   <meta name="description" content="PalaCelus — Servicio técnico, repuestos, software y TV digital en Banfield." />
   <title>PalaCelus — Servicio técnico, repuestos y software</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <link rel="manifest" href="/manifest-v2.webmanifest" />
+  <link rel="apple-touch-icon" href="/pwa-ok-192.png" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     .software-section{padding:86px 0;background:radial-gradient(circle at 14% 15%,rgba(56,189,248,.15),transparent 30%),linear-gradient(180deg,#0b1016,#0d141d);border-block:1px solid #17212c}.software-kicker{font-size:12px;font-weight:900;letter-spacing:.13em;color:#38bdf8;margin-bottom:12px}.software-section h2{font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;margin-bottom:12px}.software-section h2 span{color:#38bdf8}.software-copy{color:#a7b0bc;font-size:17px;max-width:760px}.software-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:30px 0}.software-card{background:linear-gradient(180deg,#121a24,#0f151e);border:1px solid #223140;border-radius:22px;padding:24px;display:flex;flex-direction:column;min-height:240px}.software-icon{font-size:34px;margin-bottom:18px}.software-card h3{font-size:21px;margin-bottom:8px}.software-card p{color:#9facba;font-size:14px;flex:1}.software-btn{margin-top:14px;background:#0ea5e9;color:#04151e}.software-bottom{display:grid;grid-template-columns:1fr 1fr;gap:16px}.software-panel{background:#111923;border:1px solid #263746;border-radius:22px;padding:24px}.software-panel h3{font-size:24px;margin-bottom:8px}.software-panel p{color:#9facba;margin-bottom:18px}.software-panel.tech{background:linear-gradient(145deg,#10202c,#101820);border-color:#20455c}.software-note{margin-top:18px;color:#778493;font-size:12px}.nav a[href="#software"]{color:#7dd3fc}
@@ -70,7 +70,7 @@ Quiero consultar precio y disponibilidad para repararlo.';window.open('https://w
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/service-worker.js").catch(error => console.warn("PWA service worker:", error));
+        navigator.serviceWorker.register("/service-worker-v2.js").catch(error => console.warn("PWA service worker:", error));
       });
     }
   </script>
