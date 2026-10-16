@@ -9,88 +9,27 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .tv-section{padding:86px 0;background:radial-gradient(circle at 80% 20%,rgba(139,92,246,.18),transparent 34%),linear-gradient(180deg,#0d1015,#10131a);border-block:1px solid #191d27}.tv-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}.tv-kicker{font-size:12px;font-weight:900;letter-spacing:.13em;color:#a78bfa;margin-bottom:12px}.tv-section h2{font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;margin-bottom:14px}.tv-section h2 span{color:#a78bfa}.tv-copy{color:#a7b0bc;font-size:17px;max-width:660px}.tv-features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:26px 0}.tv-feature{background:#141823;border:1px solid #272d3a;border-radius:16px;padding:15px;font-size:14px;color:#d8dee8}.tv-feature strong{display:block;color:#fff;margin-top:4px}.tv-price{display:flex;align-items:end;gap:10px;margin:24px 0}.tv-price strong{font-size:42px;line-height:1}.tv-price span{color:#9aa4b2;margin-bottom:5px}.tv-actions{display:flex;gap:12px;flex-wrap:wrap}.tv-primary{background:#8b5cf6;color:#fff}.tv-secondary{background:#171b24;border-color:#343b4a;color:#fff}.tv-screen{background:#090b10;border:1px solid #2b3040;border-radius:30px;padding:16px;box-shadow:0 28px 70px rgba(0,0,0,.35)}.tv-screen-inner{min-height:430px;border-radius:22px;background:linear-gradient(150deg,#171b28,#0f1219);padding:28px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.tv-screen-inner:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(139,92,246,.16);filter:blur(10px);right:-80px;top:-80px}.tv-logo{font-size:13px;font-weight:900;letter-spacing:.14em;color:#a78bfa}.tv-big{font-size:42px;font-weight:900;line-height:1.05;max-width:300px;position:relative;z-index:1}.tv-chips{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}.tv-chip{font-size:12px;background:#1b2030;border:1px solid #30384c;border-radius:999px;padding:8px 11px;color:#d7ddea}.tv-note{margin-top:18px;color:#7f8995;font-size:12px}.download-card{margin-top:24px;background:linear-gradient(135deg,#ff8a00,#ff6a00);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:22px;color:#fff;box-shadow:0 18px 50px rgba(255,122,0,.16)}.download-card small{display:block;font-weight:900;letter-spacing:.12em;opacity:.92;margin-bottom:8px}.download-card h3{font-size:26px;margin-bottom:8px}.download-card p{margin-bottom:16px;color:#fff7ed}.download-code{display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:15px 16px;margin-bottom:14px}.download-code span{font-size:13px;opacity:.9}.download-code strong{font-size:30px;letter-spacing:.08em}.download-link{display:inline-flex;background:#111827;color:#fff;border-radius:14px;padding:12px 16px;font-weight:900}.nav a[href="#tv"]{color:#c4b5fd}@media(max-width:900px){.tv-wrap{grid-template-columns:1fr}.tv-screen-inner{min-height:340px}}@media(max-width:620px){.tv-features{grid-template-columns:1fr}.tv-price strong{font-size:34px}.tv-screen-inner{min-height:300px}.tv-big{font-size:34px}.download-code{align-items:flex-start;flex-direction:column}.download-code strong{font-size:26px}}
+    .tv-section{padding:86px 0;background:radial-gradient(circle at 80% 20%,rgba(139,92,246,.18),transparent 34%),linear-gradient(180deg,#0d1015,#10131a);border-block:1px solid #191d27}.tv-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}.tv-kicker{font-size:12px;font-weight:900;letter-spacing:.13em;color:#a78bfa;margin-bottom:12px}.tv-section h2{font-size:clamp(38px,5vw,62px);letter-spacing:-.05em;margin-bottom:14px}.tv-section h2 span{color:#a78bfa}.tv-copy{color:#a7b0bc;font-size:17px;max-width:660px}.tv-features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:26px 0}.tv-feature{background:#141823;border:1px solid #272d3a;border-radius:16px;padding:15px;font-size:14px;color:#d8dee8}.tv-feature strong{display:block;color:#fff;margin-top:4px}.tv-price{display:flex;align-items:end;gap:10px;margin:24px 0}.tv-price strong{font-size:42px;line-height:1}.tv-price span{color:#9aa4b2;margin-bottom:5px}.tv-actions{display:flex;gap:12px;flex-wrap:wrap}.tv-primary{background:#8b5cf6;color:#fff}.tv-secondary{background:#171b24;border-color:#343b4a;color:#fff}.tv-screen{background:#090b10;border:1px solid #2b3040;border-radius:30px;padding:16px;box-shadow:0 28px 70px rgba(0,0,0,.35)}.tv-screen-inner{min-height:320px;border-radius:22px;background:linear-gradient(150deg,#171b28,#0f1219);padding:28px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.tv-screen-inner:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(139,92,246,.16);filter:blur(10px);right:-80px;top:-80px}.tv-logo{font-size:13px;font-weight:900;letter-spacing:.14em;color:#a78bfa}.tv-big{font-size:42px;font-weight:900;line-height:1.05;max-width:300px;position:relative;z-index:1}.tv-chips{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}.tv-chip{font-size:12px;background:#1b2030;border:1px solid #30384c;border-radius:999px;padding:8px 11px;color:#d7ddea}.tv-note{margin-top:18px;color:#7f8995;font-size:12px}.download-card{margin-top:24px;background:linear-gradient(135deg,#ff8a00,#ff6a00);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:22px;color:#fff;box-shadow:0 18px 50px rgba(255,122,0,.16)}.download-card small{display:block;font-weight:900;letter-spacing:.12em;opacity:.92;margin-bottom:8px}.download-card h3{font-size:26px;margin-bottom:8px}.download-card p{margin-bottom:16px;color:#fff7ed}.download-code{display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:15px 16px;margin-bottom:14px}.download-code span{font-size:13px;opacity:.9}.download-code strong{font-size:30px;letter-spacing:.08em}.download-link{display:inline-flex;background:#111827;color:#fff;border-radius:14px;padding:12px 16px;font-weight:900}.demo-card{margin-top:18px;background:linear-gradient(180deg,#151a24,#10141c);border:1px solid #2a3140;border-radius:24px;padding:24px}.demo-card .demo-label{font-size:12px;font-weight:900;letter-spacing:.12em;color:#fbbf24;margin-bottom:8px}.demo-card h3{font-size:28px;margin-bottom:8px}.demo-card>p{color:#a7b0bc;margin-bottom:18px}.demo-form{display:grid;gap:12px}.demo-form label{display:grid;gap:7px;font-size:13px;color:#cbd5e1}.demo-form input,.demo-form select{width:100%;background:#0d1118;color:#fff;border:1px solid #303846;border-radius:14px;padding:13px 14px;outline:none;font:inherit}.demo-form input:focus,.demo-form select:focus{border-color:#8b5cf6}.demo-submit{margin-top:4px;background:#f59e0b;color:#17120a;border:0;cursor:pointer}.demo-hint{font-size:12px;color:#7f8995;margin-top:10px}.nav a[href="#tv"]{color:#c4b5fd}@media(max-width:900px){.tv-wrap{grid-template-columns:1fr}.tv-screen-inner{min-height:300px}}@media(max-width:620px){.tv-features{grid-template-columns:1fr}.tv-price strong{font-size:34px}.tv-screen-inner{min-height:280px}.tv-big{font-size:34px}.download-code{align-items:flex-start;flex-direction:column}.download-code strong{font-size:26px}}
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#inicio" aria-label="PalaCelus - inicio">
-        <span class="brand-mark">PC</span>
-        <span class="brand-text">Pala<span>Celus</span></span>
-      </a>
-      <nav class="nav" aria-label="Navegación principal">
-        <a href="#repuestos">Repuestos</a>
-        <a href="#tv">TV Digital</a>
-        <a href="#servicios">Servicio técnico</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
+      <a class="brand" href="#inicio" aria-label="PalaCelus - inicio"><span class="brand-mark">PC</span><span class="brand-text">Pala<span>Celus</span></span></a>
+      <nav class="nav" aria-label="Navegación principal"><a href="#repuestos">Repuestos</a><a href="#tv">TV Digital</a><a href="#servicios">Servicio técnico</a><a href="#contacto">Contacto</a></nav>
       <a class="btn btn-small btn-whatsapp" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </header>
 
   <main>
-    <section id="inicio" class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Banfield · Servicio técnico y repuestos</div>
-          <h1>Encontrá el repuesto que necesitás <span>sin dar vueltas.</span></h1>
-          <p class="hero-copy">Repuestos originales recuperados, equipos, accesorios y reparación de celulares. Buscá por marca o modelo y consultanos directo por WhatsApp.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#repuestos">Buscar repuestos</a>
-            <a class="btn btn-secondary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n" target="_blank" rel="noopener">Consultar reparación</a>
-          </div>
-          <div class="hero-badges">
-            <span>✓ Atención directa</span>
-            <span>✓ Retiro en Banfield</span>
-            <span>✓ Productos probados</span>
-          </div>
-        </div>
-        <div class="hero-card" aria-hidden="true">
-          <div class="phone-mockup">
-            <div class="phone-top"></div>
-            <div class="phone-content">
-              <div class="mini-label">PALACELUS REPUESTOS</div>
-              <div class="mini-title">Samsung A32</div>
-              <div class="mini-card">📸 Cámara trasera<br><strong>Original recuperada</strong></div>
-              <div class="mini-card">🔋 Batería<br><strong>Original recuperada</strong></div>
-              <div class="mini-card">🔌 Pin de carga<br><strong>Probado</strong></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="inicio" class="hero"><div class="container hero-grid"><div><div class="eyebrow">Banfield · Servicio técnico y repuestos</div><h1>Encontrá el repuesto que necesitás <span>sin dar vueltas.</span></h1><p class="hero-copy">Repuestos originales recuperados, equipos, accesorios y reparación de celulares. Buscá por marca o modelo y consultanos directo por WhatsApp.</p><div class="hero-actions"><a class="btn btn-primary" href="#repuestos">Buscar repuestos</a><a class="btn btn-secondary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n" target="_blank" rel="noopener">Consultar reparación</a></div><div class="hero-badges"><span>✓ Atención directa</span><span>✓ Retiro en Banfield</span><span>✓ Productos probados</span></div></div><div class="hero-card" aria-hidden="true"><div class="phone-mockup"><div class="phone-top"></div><div class="phone-content"><div class="mini-label">PALACELUS REPUESTOS</div><div class="mini-title">Samsung A32</div><div class="mini-card">📸 Cámara trasera<br><strong>Original recuperada</strong></div><div class="mini-card">🔋 Batería<br><strong>Original recuperada</strong></div><div class="mini-card">🔌 Pin de carga<br><strong>Probado</strong></div></div></div></div></div></section>
 
-    <section id="repuestos" class="section">
-      <div class="container">
-        <div class="section-head"><div><div class="eyebrow">CATÁLOGO</div><h2>Repuestos disponibles</h2><p>Buscá por marca, modelo o tipo de repuesto.</p></div></div>
-        <div class="catalog-controls"><label class="search-box"><span>🔎</span><input id="searchInput" type="search" placeholder="Ej: A32, iPhone 11, cámara, batería..." autocomplete="off" /></label><select id="brandFilter" aria-label="Filtrar por marca"><option value="all">Todas las marcas</option><option value="Samsung">Samsung</option><option value="Apple">Apple</option><option value="Motorola">Motorola</option><option value="Xiaomi">Xiaomi</option></select></div>
-        <div id="productGrid" class="product-grid"></div>
-        <div id="emptyState" class="empty-state hidden"><div class="empty-icon">📭</div><h3>No encontramos coincidencias</h3><p>Escribinos por WhatsApp y te confirmamos si lo tenemos o lo podemos conseguir.</p><a class="btn btn-primary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20estoy%20buscando%20un%20repuesto%20que%20no%20figura%20en%20la%20web" target="_blank" rel="noopener">Consultar por WhatsApp</a></div>
-      </div>
-    </section>
+    <section id="repuestos" class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">CATÁLOGO</div><h2>Repuestos disponibles</h2><p>Buscá por marca, modelo o tipo de repuesto.</p></div></div><div class="catalog-controls"><label class="search-box"><span>🔎</span><input id="searchInput" type="search" placeholder="Ej: A32, iPhone 11, cámara, batería..." autocomplete="off" /></label><select id="brandFilter" aria-label="Filtrar por marca"><option value="all">Todas las marcas</option><option value="Samsung">Samsung</option><option value="Apple">Apple</option><option value="Motorola">Motorola</option><option value="Xiaomi">Xiaomi</option></select></div><div id="productGrid" class="product-grid"></div><div id="emptyState" class="empty-state hidden"><div class="empty-icon">📭</div><h3>No encontramos coincidencias</h3><p>Escribinos por WhatsApp y te confirmamos si lo tenemos o lo podemos conseguir.</p><a class="btn btn-primary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20estoy%20buscando%20un%20repuesto%20que%20no%20figura%20en%20la%20web" target="_blank" rel="noopener">Consultar por WhatsApp</a></div></div></section>
 
-    <section id="tv" class="tv-section">
-      <div class="container tv-wrap">
-        <div>
-          <div class="tv-kicker">PALACELUS TV</div>
-          <h2>Tu entretenimiento, <span>más simple.</span></h2>
-          <p class="tv-copy">Una opción práctica para disfrutar contenido digital en tus dispositivos, con instalación asistida y soporte directo por WhatsApp.</p>
-          <div class="tv-features"><div class="tv-feature">📺 <strong>TV en vivo</strong></div><div class="tv-feature">⚽ <strong>Deportes y fútbol</strong></div><div class="tv-feature">🎬 <strong>Películas y series</strong></div><div class="tv-feature">📱 <strong>Hasta 4 dispositivos</strong></div><div class="tv-feature">🛠️ <strong>Instalación asistida</strong></div><div class="tv-feature">💬 <strong>Soporte por WhatsApp</strong></div></div>
-          <div class="tv-price"><strong>$10.000</strong><span>/ mes</span></div>
-          <div class="tv-actions"><a class="btn tv-primary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20probar%20PalaCelus%20TV" target="_blank" rel="noopener">Pedir demo</a><a class="btn tv-secondary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20instalar%20PalaCelus%20TV" target="_blank" rel="noopener">Quiero instalarlo</a></div>
-          <div class="download-card">
-            <small>INSTALACIÓN RÁPIDA</small>
-            <h3>Descargá PalaCelus TV con Downloader</h3>
-            <p>Abrí la app Downloader en tu TV o TV Box e ingresá el siguiente código:</p>
-            <div class="download-code"><span>Código Downloader</span><strong>6590043</strong></div>
-            <a class="download-link" href="http://aftv.news/6590043" target="_blank" rel="noopener">Abrir enlace de descarga ↗</a>
-          </div>
-          <p class="tv-note">Disponibilidad y compatibilidad sujetas al dispositivo. Consultanos antes de contratar.</p>
-        </div>
-        <div class="tv-screen" aria-hidden="true"><div class="tv-screen-inner"><div class="tv-logo">PALACELUS TV</div><div class="tv-big">Entretenimiento para toda la casa.</div><div class="tv-chips"><span class="tv-chip">TV en vivo</span><span class="tv-chip">Deportes</span><span class="tv-chip">Películas</span><span class="tv-chip">Series</span><span class="tv-chip">Multi-dispositivo</span></div></div></div>
-      </div>
-    </section>
+    <section id="tv" class="tv-section"><div class="container tv-wrap"><div><div class="tv-kicker">PALACELUS TV</div><h2>Tu entretenimiento, <span>más simple.</span></h2><p class="tv-copy">Una opción práctica para disfrutar contenido digital en tus dispositivos, con instalación asistida y soporte directo por WhatsApp.</p><div class="tv-features"><div class="tv-feature">📺 <strong>TV en vivo</strong></div><div class="tv-feature">⚽ <strong>Deportes y fútbol</strong></div><div class="tv-feature">🎬 <strong>Películas y series</strong></div><div class="tv-feature">📱 <strong>Hasta 4 dispositivos</strong></div><div class="tv-feature">🛠️ <strong>Instalación asistida</strong></div><div class="tv-feature">💬 <strong>Soporte por WhatsApp</strong></div></div><div class="tv-price"><strong>$10.000</strong><span>/ mes</span></div><div class="tv-actions"><a class="btn tv-primary" href="#solicitar-demo">Pedir demo</a><a class="btn tv-secondary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20instalar%20PalaCelus%20TV" target="_blank" rel="noopener">Quiero instalarlo</a></div><div class="download-card"><small>INSTALACIÓN RÁPIDA</small><h3>Descargá PalaCelus TV con Downloader</h3><p>Abrí la app Downloader en tu TV o TV Box e ingresá el siguiente código:</p><div class="download-code"><span>Código Downloader</span><strong>6590043</strong></div><a class="download-link" href="http://aftv.news/6590043" target="_blank" rel="noopener">Abrir enlace de descarga ↗</a></div><p class="tv-note">Disponibilidad y compatibilidad sujetas al dispositivo. Consultanos antes de contratar.</p></div>
+
+      <div><div class="tv-screen" aria-hidden="true"><div class="tv-screen-inner"><div class="tv-logo">PALACELUS TV</div><div class="tv-big">Entretenimiento para toda la casa.</div><div class="tv-chips"><span class="tv-chip">TV en vivo</span><span class="tv-chip">Deportes</span><span class="tv-chip">Películas</span><span class="tv-chip">Series</span><span class="tv-chip">Multi-dispositivo</span></div></div></div>
+      <div id="solicitar-demo" class="demo-card"><div class="demo-label">SOLICITAR DEMO</div><h3>Probalo antes de contratar</h3><p>Completá tus datos y te abrimos WhatsApp con el pedido listo para enviar.</p><form id="demoForm" class="demo-form"><label>Nombre<input id="demoName" type="text" placeholder="Ej: Juan" required></label><label>Tu WhatsApp<input id="demoPhone" type="tel" placeholder="Ej: 11 5555 5555" required></label><label>¿Dónde lo vas a usar?<select id="demoDevice" required><option value="">Elegí un dispositivo</option><option>Smart TV</option><option>Android TV / Google TV</option><option>TV Box</option><option>Fire TV</option><option>Celular / Tablet</option><option>Otro</option></select></label><button class="btn demo-submit" type="submit">Solicitar demo por WhatsApp</button></form><div class="demo-hint">La demo se confirma manualmente según disponibilidad.</div></div></div></div></section>
 
     <section id="servicios" class="section section-alt"><div class="container"><div class="section-head"><div><div class="eyebrow">TALLER</div><h2>Servicio técnico</h2><p>Diagnóstico, reparación y asesoramiento para celulares.</p></div></div><div class="service-grid"><article class="service-card"><span>📱</span><h3>Pantallas y módulos</h3><p>Cambio de display, táctil y diagnóstico de imagen.</p></article><article class="service-card"><span>🔋</span><h3>Baterías y carga</h3><p>Reemplazo de batería, pin de carga y fallas de alimentación.</p></article><article class="service-card"><span>🧠</span><h3>Software</h3><p>Configuración, recuperación de sistema y soporte técnico.</p></article><article class="service-card"><span>🛠️</span><h3>Diagnóstico</h3><p>Revisión general y presupuesto antes de avanzar.</p></article></div></div></section>
 
@@ -100,5 +39,8 @@
   </main>
   <footer><div class="container footer-inner"><span>© 2026 PalaCelus</span><span>palacelus.com.ar</span></div></footer>
   <script src="script.js"></script>
+  <script>
+    document.getElementById('demoForm').addEventListener('submit',function(e){e.preventDefault();const nombre=document.getElementById('demoName').value.trim();const telefono=document.getElementById('demoPhone').value.trim();const dispositivo=document.getElementById('demoDevice').value;const mensaje=`📺 SOLICITUD DEMO PALACELUS TV\n\nNombre: ${nombre}\nWhatsApp: ${telefono}\nDispositivo: ${dispositivo}\n\nQuiero solicitar una demo.`;window.open('https://wa.me/5491164676844?text='+encodeURIComponent(mensaje),'_blank');});
+  </script>
 </body>
 </html>
