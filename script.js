@@ -27,3 +27,31 @@ const mobileCapable=document.createElement('meta');mobileCapable.name='mobile-we
 const appleCapable=document.createElement('meta');appleCapable.name='apple-mobile-web-app-capable';appleCapable.content='yes';document.head.appendChild(appleCapable);
 const appleTitle=document.createElement('meta');appleTitle.name='apple-mobile-web-app-title';appleTitle.content='PalaCelus';document.head.appendChild(appleTitle);
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker-v2.js',{scope:'/'}).then(r=>r.update()).catch(()=>{}));}
+
+// Consulta de IMEI: intenta mostrar IMEIpro dentro de PalaCelus.
+// Si el proveedor bloquea iframes, dejamos un acceso directo para abrirlo aparte.
+const imeiStyle=document.createElement('style');
+imeiStyle.textContent=`
+.imei-wrap{display:grid;gap:14px}.imei-note{background:#111820;border:1px solid #26323d;border-radius:16px;padding:14px 16px;color:#aeb8c2;font-size:13px;line-height:1.45}.imei-frame-wrap{position:relative;background:#fff;border:1px solid #2b353f;border-radius:20px;overflow:hidden;min-height:680px}.imei-frame{display:block;width:100%;height:680px;border:0;background:#fff}.imei-actions{display:flex;gap:10px;flex-wrap:wrap}.imei-fallback{color:#8f9aa6;font-size:12px}.quick-card.imei{background:linear-gradient(160deg,#122019,#0f1713);border-color:#2b4938}
+@media(max-width:560px){.imei-frame-wrap,.imei-frame{min-height:760px;height:760px}.imei-actions .btn{width:100%}}
+`;
+document.head.appendChild(imeiStyle);
+
+const quickGrid=document.querySelector('#home .quick-grid');
+if(quickGrid&&!document.querySelector('[data-go="imei"]')){
+  const imeiCard=document.createElement('button');
+  imeiCard.className='quick-card imei';
+  imeiCard.dataset.go='imei';
+  imeiCard.innerHTML='<div class="icon">🔎</div><h3>Consultar IMEI</h3><p>Chequeá el estado del IMEI usando IMEIpro.</p>';
+  imeiCard.addEventListener('click',e=>{e.preventDefault();goTo('imei')});
+  quickGrid.appendChild(imeiCard);
+}
+
+if(!document.getElementById('imei')){
+  const section=document.createElement('section');
+  section.id='imei';
+  section.className='panel';
+  section.innerHTML=`<div class="container"><div class="panel-head"><div><div class="eyebrow">CONSULTA DE IMEI</div><h2>Verificá un IMEI</h2><p>La consulta se realiza mediante IMEIpro. El captcha y el resultado pertenecen al proveedor externo.</p></div><button class="back" type="button">← Inicio</button></div><div class="imei-wrap"><div class="imei-note">Ingresá el IMEI y completá el captcha dentro de la ventana. Si IMEIpro no permite mostrarse dentro de PalaCelus, usá el botón de apertura directa.</div><div class="imei-actions"><a class="btn primary" href="https://imeipro.info/" target="_blank" rel="noopener">Abrir IMEIpro aparte</a></div><div class="imei-frame-wrap"><iframe class="imei-frame" src="https://imeipro.info/" title="Verificador IMEIpro" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><div class="imei-fallback">Si ves una pantalla en blanco o un mensaje de seguridad, significa que IMEIpro bloquea la carga dentro de otras webs. En ese caso, el botón de arriba sigue funcionando.</div></div></div>`;
+  document.querySelector('main')?.appendChild(section);
+  section.querySelector('.back')?.addEventListener('click',()=>goTo('home'));
+}
