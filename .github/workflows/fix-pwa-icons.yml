@@ -1,0 +1,53 @@
+name: Fix PWA icons
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-pwa-icons.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write valid PNG icons and update PWA files
+        shell: bash
+        run: |
+          echo 'iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAEQElEQVR4nO3dMW7bSBiAUWaxXRAgXa7kKod1lSv5FNnCMTYObFmKpBlyvvdq2yCG/zcUJYH+9PnL158bRP0z+wBgJgGQJgDSBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEj7d/YBzPTtx/fZh7ALTw+Psw9hmk+1x6Mb+tNqMWQCMPiXqYSQuAcw/JerrNnyAVRO5D0U1m7pAAon8N5WX8NlA1j9xI208louGcDKJ2yWVdc0/TnAtnXe7XjPqoN9ruXeBj33hN5r8EcM1D2Offa6zbLkS6CPrHYSb6G6JrkAqif6HMW1WSqA+uvZEVZb49RN8Igd7ui76NPD43JDfspSVwC4lABIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgLTU49E/MvOx4Jc8Vv2c4zz6Y9pHEcAB/E2Yf/6OIN4mgB275RXp5W8J4TUB7NA9X4oJ4TU3wTsz6j6k9G+QThHAjowcSleAZwLYCTvyHO4BDuic3ftUUHb//wngQC4Z3Jef9XboaQI4gGuG9r0QeCaAHbvlbm3nf5ub4J0ysGO4Alzh1t/f+Zu/y3VcAXbG8I8lANIEsCN2//EEQJoAdsLuP4cASPM26BV8unp8rgCkCYA0AZAmANIEQJoASBMAaT4HuMKtvg7tU+B5XAEGOTXkPlCbRwCkCWAnXAXmEABpAhjoo5tdV4HxBECaAAZzFdgXAeyQCMYRwATXPtyW2xHAJOdGcKsQbvm3ViKAic79CsQ1w2vwTxPAgVwyzO/9rBhe82W4yZ4eHi8eymuH+NuP776A94srwA48PTwayEkEsCMjI/BS6JkAdmZUBK44z9wD7NA9/62RwX9NADt2yxAM/tsEcAB/Du85QRj48wjgN0cZmqMc5xG4CSZNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmgBIEwBpAiBNAKQJgDQBkCYA0gRAmseiTPLWs3087mQ8V4AJ3nuwlQfWjieAwT4achGMJYCBLvnvLowhANJSAdhZP1Zbo6UC8C7K/a22xksFcI7aDneJ4trkAti2eSf63N1zxi5bHP5t27ZPn798/Tn7IG7tkpO5t2EbfTx7X6t7y38SvLedb2/Hs7olXwKtuFPNtuqaLhnAtq17wmZYeS2XDWDb1j5xo6y+hksHsG3rn8B7Kqzd8gFsW+NE3lplzZZ8G/QU77KcVhn8F7kAfieGZ7Wh/106AEjcA8B7BECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIE0ApAmANAGQJgDSBECaAEgTAGkCIO0/rof7iQIvJgUAAAAASUVORK5CYII=' | base64 -d > app-icon-192.png
+          echo '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' | base64 -d > app-icon-512.png
+          cat > manifest.webmanifest <<'EOF'
+          {
+            "id": "/",
+            "name": "PalaCelus",
+            "short_name": "PalaCelus",
+            "description": "Servicio técnico, repuestos y cotización de reparaciones en Banfield.",
+            "start_url": "/",
+            "scope": "/",
+            "display": "standalone",
+            "background_color": "#0b0d10",
+            "theme_color": "#0b0d10",
+            "orientation": "portrait-primary",
+            "prefer_related_applications": false,
+            "icons": [
+              {"src":"/app-icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+              {"src":"/app-icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"}
+            ]
+          }
+          EOF
+          cat > service-worker.js <<'EOF'
+          const CACHE='palacelus-v4';
+          const CORE=['/','/styles.css','/script.js?v=8','/manifest.webmanifest','/app-icon-192.png','/app-icon-512.png'];
+          self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));});
+          self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
+          self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(fetch(event.request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));return response;}).catch(()=>caches.match(event.request).then(r=>r||caches.match('/'))));});
+          EOF
+      - name: Commit generated files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app-icon-192.png app-icon-512.png manifest.webmanifest service-worker.js
+          git commit -m 'Fix PWA icons with valid binary PNG files'
+          git push
