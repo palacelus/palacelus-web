@@ -1,5 +1,5 @@
-const CACHE='palacelus-v1';
-const CORE=['/','/styles.css','/script.js?v=8','/manifest.webmanifest','/icon-192.svg','/icon-512.svg'];
+const CACHE='palacelus-v2';
+const CORE=['/','/styles.css','/script.js?v=8','/manifest.webmanifest','/icon-192.png','/icon-512.png'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
