@@ -39,3 +39,42 @@ if(heroBadges){
   googleBadge.textContent='⭐ Más de 100 reseñas en Google';
   heroBadges.appendChild(googleBadge);
 }
+
+const mobileStyle=document.createElement('style');
+mobileStyle.textContent=`
+.mobile-menu-btn{display:none;background:#141914;color:#fff;border:1px solid #2a332d;border-radius:12px;width:44px;height:44px;font-size:24px;align-items:center;justify-content:center;cursor:pointer}.mobile-menu{display:none}.wa-float{position:fixed;right:18px;bottom:18px;z-index:1200;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25d366;color:#06130a;font-size:28px;text-decoration:none;box-shadow:0 10px 28px rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.14)}
+@media(max-width:900px){.header-inner>.nav,.header-inner>.btn-whatsapp{display:none!important}.mobile-menu-btn{display:flex;margin-left:auto}.mobile-menu{position:fixed;inset:0;z-index:1300;background:rgba(5,7,9,.94);backdrop-filter:blur(12px);padding:18px;overflow:auto}.mobile-menu.open{display:block}.mobile-menu-panel{max-width:520px;margin:64px auto 0;background:#101511;border:1px solid #273129;border-radius:24px;padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.45)}.mobile-menu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.mobile-menu-head strong{font-size:20px}.mobile-menu-close{width:42px;height:42px;border-radius:12px;border:1px solid #2b352e;background:#171d18;color:#fff;font-size:24px;cursor:pointer}.mobile-menu-links{display:grid;gap:10px}.mobile-menu-links a{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-radius:14px;background:#171d18;border:1px solid #29342c;color:#fff;text-decoration:none;font-weight:800}.mobile-menu-links a:after{content:'›';font-size:24px;color:#55d187}.mobile-menu-wa{margin-top:14px;display:flex!important;justify-content:center;background:#25d366!important;color:#07140a!important}.mobile-menu-wa:after{display:none}.wa-float{display:flex}}
+@media(min-width:901px){.wa-float{display:none}}
+`;
+document.head.appendChild(mobileStyle);
+
+const headerInner=document.querySelector('.header-inner');
+if(headerInner){
+  const menuBtn=document.createElement('button');
+  menuBtn.className='mobile-menu-btn';
+  menuBtn.type='button';
+  menuBtn.setAttribute('aria-label','Abrir menú');
+  menuBtn.setAttribute('aria-expanded','false');
+  menuBtn.textContent='☰';
+  headerInner.appendChild(menuBtn);
+
+  const mobileMenu=document.createElement('div');
+  mobileMenu.className='mobile-menu';
+  mobileMenu.innerHTML=`<div class="mobile-menu-panel"><div class="mobile-menu-head"><strong>Menú PalaCelus</strong><button class="mobile-menu-close" type="button" aria-label="Cerrar menú">×</button></div><nav class="mobile-menu-links" aria-label="Menú móvil"><a href="#repuestos">Repuestos</a><a href="#cotizar">Cotizar reparación</a><a href="#software">Software</a><a href="#tv">TV Digital</a><a href="#servicios">Servicio técnico</a><a href="#contacto">Contacto</a><a class="mobile-menu-wa" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener">WhatsApp</a></nav></div>`;
+  document.body.appendChild(mobileMenu);
+
+  const closeMenu=()=>{mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');document.body.style.overflow=''};
+  menuBtn.addEventListener('click',()=>{mobileMenu.classList.add('open');menuBtn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});
+  mobileMenu.querySelector('.mobile-menu-close').addEventListener('click',closeMenu);
+  mobileMenu.addEventListener('click',e=>{if(e.target===mobileMenu)closeMenu()});
+  mobileMenu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
+}
+
+const waFloat=document.createElement('a');
+waFloat.className='wa-float';
+waFloat.href='https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20hacer%20una%20consulta';
+waFloat.target='_blank';
+waFloat.rel='noopener';
+waFloat.setAttribute('aria-label','WhatsApp PalaCelus');
+waFloat.textContent='💬';
+document.body.appendChild(waFloat);
