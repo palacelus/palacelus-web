@@ -29,13 +29,13 @@ const contacto=document.getElementById('contacto');
 if(contacto){
   const reviews=document.createElement('section');
   reviews.className='reviews-strip';
-  reviews.innerHTML=`<div class="container"><div class="reviews-box"><div class="reviews-main"><div class="reviews-stars">⭐ ⭐ ⭐ ⭐ ⭐</div><div><h3>113 reseñas en Google</h3><p>La experiencia de nuestros clientes también habla por nosotros. Mirá las reseñas de PalaCelus en Google.</p></div></div><a class="btn reviews-btn" href="https://share.google/cJlCov9rjp5xGGMMA" target="_blank" rel="noopener">Ver reseñas en Google</a></div></div>`;
+  reviews.innerHTML=`<div class="container"><div class="reviews-box"><div class="reviews-main"><div class="reviews-stars">⭐ ⭐ ⭐ ⭐ ⭐</div><div><h3>Más de 100 reseñas en Google</h3><p>La experiencia de nuestros clientes también habla por nosotros. Mirá las reseñas de PalaCelus en Google.</p></div></div><a class="btn reviews-btn" href="https://share.google/cJlCov9rjp5xGGMMA" target="_blank" rel="noopener">Ver reseñas en Google</a></div></div>`;
   contacto.insertAdjacentElement('beforebegin',reviews);
 }
 
 const heroBadges=document.querySelector('.hero-badges');
 if(heroBadges){
   const googleBadge=document.createElement('span');
-  googleBadge.textContent='⭐ 113 reseñas en Google';
+  googleBadge.textContent='⭐ Más de 100 reseñas en Google';
   heroBadges.appendChild(googleBadge);
 }
