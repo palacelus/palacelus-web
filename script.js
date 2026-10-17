@@ -55,10 +55,3 @@ if(!document.getElementById('imei')){
   document.querySelector('main')?.appendChild(section);
   section.querySelector('.back')?.addEventListener('click',()=>goTo('home'));
 }
-
-// Enlace actualizado de USB Redirector 1.9.7.
-document.querySelectorAll('a').forEach(a=>{
-  if(a.textContent.trim().startsWith('REDIRECTOR 1.9.7')){
-    a.href='https://androidfilehost.com/?fid=4349826312261725872';
-  }
-});
