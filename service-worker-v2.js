@@ -1,4 +1,4 @@
-const CACHE = 'palacelus-pwa-v11';
+const CACHE = 'palacelus-pwa-v12';
 const CORE = [
   '/',
   '/styles.css',
