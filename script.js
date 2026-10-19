@@ -65,3 +65,14 @@ if(quickGrid&&!document.getElementById('catalogo-celulares-link')){
   catalogCard.innerHTML='<div class="icon">🛍️</div><h3>Celulares nuevos</h3><p>Catálogo con Samsung, Motorola, Xiaomi y más.</p>';
   quickGrid.prepend(catalogCard);
 }
+
+// Catálogo de MacBook nuevas en stock.
+if(quickGrid&&!document.getElementById('catalogo-macbook-link')){
+  const macCard=document.createElement('a');
+  macCard.id='catalogo-macbook-link';
+  macCard.className='quick-card blue';
+  macCard.href='/macbook.html';
+  macCard.innerHTML='<div class="icon">💻</div><h3>MacBook nuevas</h3><p>Modelos Apple disponibles con stock confirmado.</p>';
+  const catalogCard=document.getElementById('catalogo-celulares-link');
+  if(catalogCard?.nextSibling)quickGrid.insertBefore(macCard,catalogCard.nextSibling);else quickGrid.appendChild(macCard);
+}
