@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b0d10">
-  <meta name="description" content="PalaCelus — Servicio técnico, repuestos, software y TV digital en Banfield.">
-  <title>PalaCelus — Servicio técnico y repuestos</title>
+  <meta name="description" content="PalaCelus — celulares, tecnología, tienda, servicio técnico, repuestos, software y TV digital en Banfield.">
+  <title>PalaCelus — Tecnología, servicio técnico y tienda</title>
   <link rel="manifest" href="/manifest-v2.webmanifest">
   <link rel="icon" href="/pwa-ok-192.png" type="image/png">
   <link rel="apple-touch-icon" href="/pwa-ok-192.png">
@@ -16,12 +16,13 @@
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="container topbar-inner"><a class="brand" href="#" data-go="home"><span class="brand-mark">PC</span><span>Pala<span>Celus</span></span></a><div class="top-actions"><button class="btn" data-go="contacto">Contacto</button><a class="btn whatsapp" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener">WhatsApp</a></div></div></header>
+  <header class="topbar"><div class="container topbar-inner"><a class="brand" href="#" data-go="home"><span class="brand-mark">PC</span><span>Pala<span>Celus</span></span></a><div class="top-actions"><a class="btn" href="/store.html?v=1">Tienda</a><button class="btn" data-go="contacto">Contacto</button><a class="btn whatsapp" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener">WhatsApp</a></div></div></header>
 
   <main>
     <section id="home" class="panel active"><div class="container">
-      <div class="hero"><div class="eyebrow">BANFIELD · PALACELUS</div><h1>Todo lo que necesitás para tu celular, <span>sin dar vueltas.</span></h1><p>Repuestos, reparaciones, software y servicios. Elegí qué necesitás y entrá directo.</p></div>
+      <div class="hero"><div class="eyebrow">BANFIELD · PALACELUS</div><h1>Tecnología, reparaciones y <span>mucho más.</span></h1><p>Celulares nuevos, tienda, repuestos, reparaciones, software y servicios. Elegí qué necesitás y entrá directo.</p></div>
       <div class="quick-grid">
+        <a class="quick-card green" href="/store.html?v=1"><div class="icon">🛍️</div><h3>PalaCelus Store</h3><p>Tecnología, hogar, herramientas, seguridad y productos de temporada.</p></a>
         <button class="quick-card green" data-go="repuestos"><div class="icon">🧩</div><h3>Repuestos</h3><p>Buscá por marca, modelo o tipo de repuesto.</p></button>
         <button class="quick-card green" data-go="cotizar"><div class="icon">🔧</div><h3>Cotizar reparación</h3><p>Contanos la falla y armamos el mensaje por WhatsApp.</p></button>
         <button class="quick-card blue" data-go="software"><div class="icon">💻</div><h3>Software</h3><p>Configuración, diagnóstico, actualización y soporte.</p></button>
@@ -30,7 +31,7 @@
         <button class="quick-card" data-go="contacto"><div class="icon">📍</div><h3>Contacto</h3><p>Dirección, horario, WhatsApp e Instagram.</p></button>
         <button class="quick-card blue" data-go="tu-ip"><div class="icon">🌐</div><h3>TU IP</h3><p>Consultá tu IP pública y herramientas de red.</p></button>
       </div>
-      <div class="status-row"><span class="pill">✓ Atención directa</span><span class="pill">✓ Retiro en Banfield</span><span class="pill">⭐ +100 reseñas en Google</span><span class="pill">🛵 Envíos según zona</span></div>
+      <div class="status-row"><span class="pill">🛍️ Tienda online</span><span class="pill">✓ Atención directa</span><span class="pill">✓ Retiro en Banfield</span><span class="pill">⭐ +100 reseñas en Google</span><span class="pill">🛵 Envíos según zona</span></div>
     </div></section>
 
     <section id="repuestos" class="panel"><div class="container"><div class="panel-head"><div><div class="eyebrow">CATÁLOGO</div><h2>Repuestos</h2><p>Buscá por marca, modelo o repuesto.</p></div><button class="back" data-go="home">← Inicio</button></div><div class="controls"><input id="searchInput" type="search" placeholder="Ej: A32, iPhone 11, cámara, batería..."><select id="brandFilter"><option value="all">Todas las marcas</option><option>Samsung</option><option>Apple</option><option>Motorola</option><option>Xiaomi</option></select></div><div id="productGrid" class="product-grid"></div><div id="emptyState" class="empty-state hidden"><h3>No encontramos coincidencias</h3><p>Escribinos y te confirmamos disponibilidad.</p><a class="btn primary" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20busco%20un%20repuesto" target="_blank" rel="noopener">Consultar por WhatsApp</a></div></div></section>
