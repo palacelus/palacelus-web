@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<title>Catálogo de celulares | PalaCelus</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b0d10;color:#fff;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}header{position:sticky;top:0;z-index:20;background:rgba(11,13,16,.94);backdrop-filter:blur(12px);border-bottom:1px solid #222b33}.top{height:68px;display:flex;align-items:center;gap:14px}.brand{font-size:22px;font-weight:900;text-decoration:none;color:#fff}.brand span{color:#2dd4a7}.spacer{flex:1}.btn{border:1px solid #2a333d;background:#151a20;color:#fff;border-radius:13px;padding:11px 14px;text-decoration:none;font-weight:800;cursor:pointer}.btn.wa{background:#25d366;border-color:#25d366;color:#07130b}.hero{padding:42px 0 24px}.eyebrow{font-size:12px;color:#2dd4a7;font-weight:900;letter-spacing:.14em}.hero h1{font-size:clamp(38px,7vw,64px);line-height:1;margin:10px 0 13px;letter-spacing:-.05em}.hero p{margin:0;color:#a8b3bd;max-width:760px;line-height:1.5}.notice{margin-top:18px;background:#111921;border:1px solid #263542;border-radius:16px;padding:13px 15px;color:#bac5ce;font-size:13px}.controls{display:grid;grid-template-columns:1fr 220px;gap:12px;margin:20px 0}.controls input,.controls select{width:100%;padding:13px 14px;border-radius:13px;border:1px solid #2b353f;background:#10151a;color:#fff;outline:none}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-bottom:60px}.card{background:#12171c;border:1px solid #252e37;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;min-width:0}.photo{height:250px;background:#fff;display:grid;place-items:center;padding:16px;overflow:hidden}.photo img{width:100%;height:100%;object-fit:contain}.body{padding:17px;display:flex;flex-direction:column;flex:1}.brandtag{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#2dd4a7;font-weight:900}.body h2{font-size:21px;margin:8px 0 5px}.sub{font-size:13px;color:#8f9aa6;margin-bottom:12px}.variants{display:grid;gap:8px;margin:4px 0 13px}.variant{border:1px solid #2b353f;border-radius:12px;padding:10px 11px;background:#0e1317}.variant-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.mem{font-size:13px;font-weight:800}.price{font-size:17px;font-weight:950;color:#fff}.stock{font-size:11px;color:#82909c;margin-top:4px}.actions{margin-top:auto;display:grid;grid-template-columns:1fr;gap:8px}.actions a{width:100%;text-align:center}.badge{display:inline-flex;align-items:center;gap:5px;background:#193126;color:#7be1b5;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.footer{border-top:1px solid #202932;color:#8e9aa5;padding:24px 0 40px;font-size:13px}.hidden{display:none!important}.fallback{height:100%;width:100%;display:grid;place-items:center;font-size:66px;color:#111;background:linear-gradient(160deg,#f8fafc,#e8edf2)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:590px){.wrap{width:min(100% - 20px,1180px)}.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.photo{height:230px}.hero{padding-top:28px}.top .btn:not(.wa){display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><a class="brand" href="/">Pala<span>Celus</span></a><div class="spacer"></div><a class="btn" href="/">← Inicio</a><a class="btn wa" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20un%20celular" target="_blank" rel="noopener">WhatsApp</a></div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">CELULARES NUEVOS · CATÁLOGO</div><h1>Elegí tu próximo celu.</h1><p>Equipos nuevos. Los modelos con varias memorias están agrupados en una sola ficha para que compares rápido. Consultanos stock y colores disponibles.</p><div class="notice">💰 Precios orientados a ser competitivos frente al mercado online. Pueden cambiar según reposición, promociones y disponibilidad del proveedor.</div></section>
+<div class="controls"><input id="q" type="search" placeholder="Buscar modelo..."><select id="brand"><option value="all">Todas las marcas</option><option>Samsung</option><option>Motorola</option><option>Xiaomi</option><option>Realme</option><option>POCO</option><option>Hotwav</option></select></div>
+<section id="grid" class="grid"></section>
+</main>
+<footer class="footer"><div class="wrap">PalaCelus · Solar 35, entre Lynch y Capitán Rojas, Banfield · WhatsApp 11 6467 6844</div></footer>
+<script>
+const P=[
+{b:'Samsung',n:'Galaxy A17',img:'https://myxprs.com/cdn/shop/files/SamsungGalaxyA174G-8GBRam-256GB_LocalWarranty.png?v=1770814970&width=1000',v:[['8GB / 256GB','$529.900']]},
+{b:'Samsung',n:'Galaxy A27',img:'https://www.trippodo.com/1506386-large_default/samsung-galaxy-a27-5g-17-cm-67-sim-doble-android-160-usb-tipo-c-6-gb-128-gb-5000-mah-negro.jpg',v:[['6GB / 128GB','$659.900'],['8GB / 256GB','$699.900']]},
+{b:'Samsung',n:'Galaxy A36',img:'https://www.samsung-online.com.ua/uploads/shop/products/large/c_570ff8097d87e03d7fbfa8f95da73655.jpg',v:[['8GB / 256GB','$719.900']]},
+{b:'Samsung',n:'Galaxy A56',img:'https://mobileplanet.ua/uploads/product/2025-3-14/samsung-galaxy-a56-5g-8-256gb-awesome-graphite-sm-3387041.webp',v:[['8GB / 256GB','$889.900']]},
+{b:'Motorola',n:'Moto G04S',img:'https://cdn.awsli.com.br/953/953953/produto/359839162/32c7d79e-3806-4fc1-a5b6-cae0c05d0760-fybrp97fx4.png',v:[['4GB / 256GB','$259.900']]},
+{b:'Motorola',n:'Moto G06',img:'https://p4-ofp.static.pub/fes/cms/2025/09/03/94kxwl1lryu7we6adw4g9haothbvmi306839.png',v:[['4GB / 64GB','$219.900'],['4GB / 128GB','$249.900'],['4GB / 256GB','$299.900']]},
+{b:'Motorola',n:'Moto G15',img:'https://welectronics.com/images/stories/virtuemart/product/MotorolaMotoG15gray7.jpg',v:[['4GB / 256GB','$319.900']]},
+{b:'Motorola',n:'Moto G17',img:'https://brmotorolanew.vtexassets.com/arquivos/ids/177598/MOTOG77_1000X1000PX_01.png?v=639052259631500000',v:[['4GB / 128GB','$319.900'],['4GB / 256GB','$334.900']]},
+{b:'Motorola',n:'Moto G35',img:'https://dexon.cl/api/uploads/products/d0875943-738c-4bb5-8104-498e9e5aed08.png',v:[['4GB / 128GB','$359.900'],['4GB / 256GB','$354.900']]},
+{b:'Motorola',n:'Edge 70 Fusion',img:'https://www.purepc.pl/image/news/2026/03/02_motorola_edge_70_fusion_smartfon_z_ukladem_snadpragon_7s_gen_3_trafia_na_rynek_w_dwoch_wersjach_z_roznymi_bateriami_2_b.png',v:[['8GB / 512GB','$999.900']]},
+{b:'Xiaomi',n:'Redmi A5',img:'https://i.ebayimg.com/images/g/YnAAAeSwY~9od3sQ/s-l1200.webp',v:[['4GB / 128GB','$289.900']]},
+{b:'Xiaomi',n:'Redmi A7',img:'https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/3588/PMP20001499474/full_image-1.jpeg',v:[['3GB / 64GB','$269.900']]},
+{b:'Xiaomi',n:'Redmi A7 Pro',img:'https://cdn11.bigcommerce.com/s-2cvjcuc0hg/images/stencil/1280x1280/products/43372/7860743/ImageHttpHandler.ashx_operationcode_1%26productcode_2260003497%26imageorder_0%26thumbnailsize_1200%26usercode_421%26ip_80.90.95__09742.1778670943.jpg?c=1',v:[['4GB / 64GB','$269.900'],['4GB / 128GB','$299.900']]},
+{b:'Xiaomi',n:'Redmi C71',img:'',v:[['4GB / 64GB','$249.900']]},
+{b:'Realme',n:'C71',img:'https://cdn.mobilecity.vn/mobilecity-vn/images/2025/06/realme-c71-trang.jpg',v:[['8GB / 256GB','$499.900']]},
+{b:'Xiaomi',n:'Redmi 15C',img:'https://img.pccomponentes.com/articles/1094/10942435/1691-xiaomi-redmi-15c-4gb-128gb-69-120hz-bateria-6000mah-carga-rapida-33w-azul-opiniones.jpg',v:[['8GB / 256GB','$344.900']]},
+{b:'POCO',n:'C81 Pro',img:'https://cdn.antaranews.com/cache/1200x800/2026/04/29/poco-c81-pro-all-color-options-1536x864.jpg',v:[['4GB / 128GB','$319.900']]},
+{b:'POCO',n:'C85',img:'https://down-ph.img.susercontent.com/file/ph-11134207-820lg-mp8wr12u2v41d9',v:[['6GB / 128GB','$299.900'],['8GB / 256GB','$349.900']]},
+{b:'Hotwav',n:'A26 Ultra',img:'https://www.supergames.com.py/34729-thickbox_default/celular-hotwav-a26-ultra-256gb-3gb-ram-dual-sim-tela-6-75----branco.jpg',v:[['256GB','$299.900']]}
+];
+const grid=document.getElementById('grid'),q=document.getElementById('q'),brand=document.getElementById('brand');
+function wa(p,mem,price){return 'https://wa.me/5491164676844?text='+encodeURIComponent(`Hola PalaCelus, quería consultar disponibilidad del ${p.b} ${p.n} ${mem} publicado a ${price}.`)}
+function render(){const text=q.value.trim().toLowerCase(),bf=brand.value;grid.innerHTML='';P.filter(p=>(bf==='all'||p.b===bf)&&(`${p.b} ${p.n}`).toLowerCase().includes(text)).forEach(p=>{const c=document.createElement('article');c.className='card';const pic=p.img?`<img loading="lazy" src="${p.img}" alt="${p.b} ${p.n}" onerror="this.parentElement.innerHTML='<div class=\'fallback\'>📱</div>'">`:`<div class="fallback">📱</div>`;const vars=p.v.map(x=>`<div class="variant"><div class="variant-top"><span class="mem">${x[0]}</span><span class="price">${x[1]}</span></div><div class="stock">Nuevo · Consultar stock y colores</div><div style="margin-top:8px"><a class="btn wa" style="display:block;text-align:center;padding:9px 10px" href="${wa(p,x[0],x[1])}" target="_blank" rel="noopener">Consultar esta versión</a></div></div>`).join('');c.innerHTML=`<div class="photo">${pic}</div><div class="body"><div><span class="brandtag">${p.b}</span> <span class="badge">Nuevo</span></div><h2>${p.n}</h2><div class="sub">Equipo nuevo · Precio contado/transferencia</div><div class="variants">${vars}</div></div>`;grid.appendChild(c)})}
+q.addEventListener('input',render);brand.addEventListener('change',render);render();
+</script>
+</body>
+</html>
