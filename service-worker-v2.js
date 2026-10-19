@@ -1,8 +1,9 @@
-const CACHE = 'palacelus-pwa-v12';
+const CACHE = 'palacelus-pwa-v13';
 const CORE = [
   '/',
+  '/store.html?v=2',
   '/styles.css',
-  '/script.js',
+  '/script.js?v=21',
   '/manifest-v2.webmanifest',
   '/pwa-ok-192.png',
   '/pwa-ok-512.png'
@@ -13,7 +14,7 @@ self.addEventListener('install', event => {
     caches.open(CACHE)
       .then(async cache => {
         for (const url of CORE) {
-          try { await cache.add(url); } catch (_) {}
+          try { await cache.add(new Request(url,{cache:'reload'})); } catch (_) {}
         }
       })
       .then(() => self.skipWaiting())
@@ -33,13 +34,15 @@ self.addEventListener('fetch', event => {
 
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, {cache:'no-store'})
         .then(response => {
-          const copy = response.clone();
-          caches.open(CACHE).then(cache => cache.put('/', copy));
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE).then(cache => cache.put(event.request, copy));
+          }
           return response;
         })
-        .catch(() => caches.match('/'))
+        .catch(async () => (await caches.match(event.request)) || caches.match('/'))
     );
     return;
   }
@@ -47,7 +50,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (url.origin === self.location.origin) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, {cache:'no-store'})
         .then(response => {
           if (response && response.ok) {
             const copy = response.clone();
