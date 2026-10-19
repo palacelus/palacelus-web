@@ -55,3 +55,13 @@ if(!document.getElementById('imei')){
   document.querySelector('main')?.appendChild(section);
   section.querySelector('.back')?.addEventListener('click',()=>goTo('home'));
 }
+
+// Catálogo de celulares nuevos.
+if(quickGrid&&!document.getElementById('catalogo-celulares-link')){
+  const catalogCard=document.createElement('a');
+  catalogCard.id='catalogo-celulares-link';
+  catalogCard.className='quick-card green';
+  catalogCard.href='/catalogo.html';
+  catalogCard.innerHTML='<div class="icon">🛍️</div><h3>Celulares nuevos</h3><p>Catálogo con Samsung, Motorola, Xiaomi y más.</p>';
+  quickGrid.prepend(catalogCard);
+}
