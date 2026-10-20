@@ -254,3 +254,33 @@ if(softwareContainer&&!document.getElementById('pc-tools')){
   const fromUsdt=()=>{const rate=parseLocalNumber(rateInput.value),usdt=parseLocalNumber(usdtInput.value);if(!(rate>0)||!(usdt>=0)){result.textContent='Cargá una cotización y un importe.';return;}const ars=usdt*rate;arsInput.value=Number.isFinite(ars)?ars.toFixed(2):'';result.textContent=`${fmtUsdt(usdt)} USD/USDT = ${fmtArs(ars)}`;saveRate();};
   arsInput?.addEventListener('input',fromArs);usdtInput?.addEventListener('input',fromUsdt);rateInput?.addEventListener('change',()=>{saveRate();if(arsInput.value)fromArs();else if(usdtInput.value)fromUsdt();});
 }
+
+// Destacado de servicio FRP Xiaomi dentro del apartado Software.
+const frpXiaomiStyle=document.createElement('style');
+frpXiaomiStyle.textContent=`
+.frp-xiaomi-feature{position:relative;overflow:hidden;margin:0 0 24px;padding:24px;border:1px solid #6a3719;border-radius:24px;background:radial-gradient(circle at 100% 0,rgba(249,115,22,.2),transparent 38%),linear-gradient(145deg,#1b140f,#111315 64%);box-shadow:0 18px 44px rgba(0,0,0,.22)}
+.frp-xiaomi-feature:after{content:'MI';position:absolute;right:-8px;bottom:-34px;font-size:132px;line-height:1;font-weight:1000;letter-spacing:-.08em;color:rgba(249,115,22,.075);pointer-events:none}
+.frp-xiaomi-top{display:flex;align-items:center;gap:14px;margin-bottom:14px;position:relative;z-index:1}.frp-xiaomi-logo{width:52px;height:52px;border-radius:16px;background:#f97316;color:#fff;display:grid;place-items:center;font-weight:1000;font-size:18px;box-shadow:0 10px 28px rgba(249,115,22,.24)}
+.frp-xiaomi-kicker{font-size:11px;font-weight:900;letter-spacing:.14em;color:#fb923c}.frp-xiaomi-feature h3{margin:3px 0 0;font-size:30px;letter-spacing:-.03em}.frp-xiaomi-feature p{position:relative;z-index:1;margin:0;color:#aeb8c2;max-width:720px;line-height:1.5}.frp-xiaomi-pills{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin:17px 0}.frp-xiaomi-pills span{border:1px solid #3d2a1e;background:#17130f;border-radius:999px;padding:8px 11px;color:#d8c6b8;font-size:12px;font-weight:800}.frp-xiaomi-actions{position:relative;z-index:1;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.frp-xiaomi-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#f97316!important;border-color:#f97316!important;color:#fff!important;box-shadow:0 10px 26px rgba(249,115,22,.22)}.frp-xiaomi-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.frp-xiaomi-note{font-size:11px;color:#7f8b96}
+@media(max-width:560px){.frp-xiaomi-feature{padding:19px}.frp-xiaomi-feature h3{font-size:25px}.frp-xiaomi-btn{width:100%}.frp-xiaomi-actions{align-items:stretch}.frp-xiaomi-feature:after{font-size:96px}}
+`;
+document.head.appendChild(frpXiaomiStyle);
+
+if(softwareContainer&&!document.getElementById('frp-xiaomi-feature')){
+  const frpCard=document.createElement('div');
+  frpCard.id='frp-xiaomi-feature';
+  frpCard.className='frp-xiaomi-feature';
+  frpCard.innerHTML=`
+    <div class="frp-xiaomi-top">
+      <div class="frp-xiaomi-logo">MI</div>
+      <div><div class="frp-xiaomi-kicker">SERVICIO REMOTO</div><h3>FRP XIAOMI</h3></div>
+    </div>
+    <p>¿Tenés un Xiaomi, Redmi o POCO con bloqueo FRP? Consultanos el modelo y te confirmamos compatibilidad, valor y modalidad antes de comenzar.</p>
+    <div class="frp-xiaomi-pills"><span>⚡ Atención remota</span><span>📱 Xiaomi · Redmi · POCO</span><span>💬 Respuesta por WhatsApp</span></div>
+    <div class="frp-xiaomi-actions">
+      <a class="btn frp-xiaomi-btn" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20FRP%20Xiaomi.%0AModelo%3A%20____%0AVersi%C3%B3n%20de%20Android%2FHyperOS%3A%20____" target="_blank" rel="noopener">💬 CONSULTAR FRP XIAOMI</a>
+      <span class="frp-xiaomi-note">Servicio sujeto a compatibilidad del modelo.</span>
+    </div>`;
+  const firstContent=softwareContainer.querySelector('.service-grid,.apps-section,.download-section');
+  if(firstContent)softwareContainer.insertBefore(frpCard,firstContent);else softwareContainer.appendChild(frpCard);
+}
