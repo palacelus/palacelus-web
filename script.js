@@ -118,11 +118,12 @@ if(downloadLinks){
   }
 }
 
-// Utilidades rápidas: generador QR y calculadora ARS / USD / USDT.
+// Utilidades rápidas: generador QR guiado y calculadora ARS / USD / USDT.
 const utilityStyle=document.createElement('style');
 utilityStyle.textContent=`
-.pc-tools{margin-top:28px;padding-top:26px;border-top:1px solid #252e37}.pc-tools h3{margin:0 0 6px;font-size:25px}.pc-tools>p{margin:0 0 16px;color:#98a3ae}.pc-tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pc-tool{background:#12171c;border:1px solid #252e37;border-radius:20px;padding:18px}.pc-tool h4{margin:0 0 6px;font-size:18px}.pc-tool p{margin:0 0 14px;color:#8f9aa6;font-size:13px;line-height:1.4}.pc-field{display:grid;gap:6px;margin-top:10px}.pc-field label{font-size:12px;color:#aeb8c2;font-weight:800}.pc-field input,.pc-field textarea{width:100%;background:#0f1419;color:#fff;border:1px solid #2c3741;border-radius:12px;padding:12px 13px;outline:none}.pc-field textarea{min-height:86px;resize:vertical}.pc-field input:focus,.pc-field textarea:focus{border-color:#2dd4a7}.pc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pc-result{margin-top:12px;background:#0d1317;border:1px solid #26313a;border-radius:13px;padding:12px 13px;font-weight:900}.pc-qr-preview{display:none;margin-top:14px;text-align:center;background:#fff;border-radius:15px;padding:14px}.pc-qr-preview img{display:block;max-width:260px;width:100%;height:auto;margin:auto}.pc-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.pc-actions .btn{flex:1 1 150px}.pc-mini{font-size:11px;color:#7f8b96;margin-top:8px}.pc-rate-saved{color:#2dd4a7;font-size:11px;margin-top:6px;min-height:16px}
+.pc-tools{margin-top:28px;padding-top:26px;border-top:1px solid #252e37}.pc-tools h3{margin:0 0 6px;font-size:25px}.pc-tools>p{margin:0 0 16px;color:#98a3ae}.pc-tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pc-tool{background:#12171c;border:1px solid #252e37;border-radius:20px;padding:18px}.pc-tool h4{margin:0 0 6px;font-size:18px}.pc-tool p{margin:0 0 14px;color:#8f9aa6;font-size:13px;line-height:1.4}.pc-field{display:grid;gap:6px;margin-top:10px}.pc-field label{font-size:12px;color:#aeb8c2;font-weight:800}.pc-field input,.pc-field textarea,.pc-field select{width:100%;background:#0f1419;color:#fff;border:1px solid #2c3741;border-radius:12px;padding:12px 13px;outline:none}.pc-field textarea{min-height:86px;resize:vertical}.pc-field input:focus,.pc-field textarea:focus,.pc-field select:focus{border-color:#2dd4a7}.pc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pc-result{margin-top:12px;background:#0d1317;border:1px solid #26313a;border-radius:13px;padding:12px 13px;font-weight:900}.pc-qr-types{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.pc-qr-type{border:1px solid #2c3741;background:#0f1419;color:#b9c3cc;border-radius:12px;padding:10px 8px;cursor:pointer;font-size:12px;font-weight:900;transition:.15s}.pc-qr-type:hover{border-color:#43515d}.pc-qr-type.active{background:#17392f;border-color:#2dd4a7;color:#7ff0ca}.pc-qr-fields{display:none}.pc-qr-fields.active{display:block}.pc-qr-preview{display:none;margin-top:14px;text-align:center;background:#fff;border-radius:15px;padding:14px}.pc-qr-preview img{display:block;max-width:260px;width:100%;height:auto;margin:auto}.pc-qr-preview small{display:block;color:#4b5563;margin-top:10px;font-size:11px}.pc-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.pc-actions .btn{flex:1 1 150px}.pc-mini{font-size:11px;color:#7f8b96;margin-top:8px}.pc-qr-error{min-height:18px;margin-top:8px;color:#fda4af;font-size:12px}.pc-rate-saved{color:#2dd4a7;font-size:11px;margin-top:6px;min-height:16px}
 @media(max-width:760px){.pc-tools-grid{grid-template-columns:1fr}.pc-row{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.pc-qr-types{grid-template-columns:1fr 1fr}}
 @media(max-width:430px){.pc-row{grid-template-columns:1fr}}
 `;
 document.head.appendChild(utilityStyle);
@@ -138,11 +139,42 @@ if(softwareContainer&&!document.getElementById('pc-tools')){
     <p>Utilidades rápidas para usar desde el taller, el celular o una PC.</p>
     <div class="pc-tools-grid">
       <div class="pc-tool">
-        <h4>🔳 Generador de QR</h4>
-        <p>Pegá un link, texto, WhatsApp, Wi‑Fi o dato y generá un QR para mostrar o guardar.</p>
-        <div class="pc-field"><label for="pcQrText">Texto o enlace</label><textarea id="pcQrText" placeholder="Ej: https://palacelus.com.ar/"></textarea></div>
-        <div class="pc-actions"><button class="btn primary" id="pcQrGenerate" type="button">Generar QR</button><a class="btn" id="pcQrOpen" href="#" target="_blank" rel="noopener noreferrer" style="display:none">Abrir / guardar</a></div>
-        <div class="pc-qr-preview" id="pcQrPreview"><img id="pcQrImage" alt="QR generado"></div>
+        <h4>🔳 Crear código QR</h4>
+        <p>Elegí qué querés compartir. La web te muestra solamente los datos que necesitás completar.</p>
+        <div class="pc-qr-types" role="tablist" aria-label="Tipo de QR">
+          <button class="pc-qr-type active" type="button" data-qr-type="whatsapp">💬 WhatsApp</button>
+          <button class="pc-qr-type" type="button" data-qr-type="wifi">📶 Wi‑Fi</button>
+          <button class="pc-qr-type" type="button" data-qr-type="text">📝 Texto</button>
+          <button class="pc-qr-type" type="button" data-qr-type="link">🔗 Enlace</button>
+        </div>
+
+        <div class="pc-qr-fields active" data-qr-fields="whatsapp">
+          <div class="pc-field"><label for="pcQrWhatsappNumber">Número de WhatsApp</label><input id="pcQrWhatsappNumber" inputmode="tel" placeholder="Ej: +54 9 11 6467 6844"></div>
+          <div class="pc-field"><label for="pcQrWhatsappMessage">Mensaje opcional</label><textarea id="pcQrWhatsappMessage" placeholder="Ej: Hola PalaCelus, quería consultar por..."></textarea></div>
+          <div class="pc-mini">Usá el número con código de país. Al escanear, abre directamente el chat.</div>
+        </div>
+
+        <div class="pc-qr-fields" data-qr-fields="wifi">
+          <div class="pc-field"><label for="pcQrWifiName">Nombre de la red Wi‑Fi</label><input id="pcQrWifiName" autocomplete="off" placeholder="Ej: PalaCelus WiFi"></div>
+          <div class="pc-row">
+            <div class="pc-field"><label for="pcQrWifiSecurity">Seguridad</label><select id="pcQrWifiSecurity"><option value="WPA">WPA / WPA2</option><option value="WEP">WEP</option><option value="nopass">Sin contraseña</option></select></div>
+            <div class="pc-field" id="pcQrWifiPasswordWrap"><label for="pcQrWifiPassword">Contraseña</label><input id="pcQrWifiPassword" autocomplete="off" placeholder="Contraseña Wi‑Fi"></div>
+          </div>
+          <div class="pc-mini">Al escanear desde un celular compatible, ofrece conectarse a la red automáticamente.</div>
+        </div>
+
+        <div class="pc-qr-fields" data-qr-fields="text">
+          <div class="pc-field"><label for="pcQrPlainText">Texto</label><textarea id="pcQrPlainText" placeholder="Escribí el texto que querés mostrar al escanear"></textarea></div>
+        </div>
+
+        <div class="pc-qr-fields" data-qr-fields="link">
+          <div class="pc-field"><label for="pcQrLink">Enlace</label><input id="pcQrLink" inputmode="url" placeholder="Ej: palacelus.com.ar"></div>
+          <div class="pc-mini">Si escribís una web sin https://, PalaCelus lo agrega automáticamente.</div>
+        </div>
+
+        <div class="pc-qr-error" id="pcQrError"></div>
+        <div class="pc-actions"><button class="btn primary" id="pcQrGenerate" type="button">Generar QR</button><a class="btn" id="pcQrOpen" href="#" target="_blank" rel="noopener noreferrer" style="display:none">Abrir QR</a></div>
+        <div class="pc-qr-preview" id="pcQrPreview"><img id="pcQrImage" alt="QR generado"><small>Escanealo con otro celular para probarlo.</small></div>
       </div>
       <div class="pc-tool">
         <h4>💵 Calculadora USD / USDT</h4>
@@ -159,12 +191,56 @@ if(softwareContainer&&!document.getElementById('pc-tools')){
     </div>`;
   softwareContainer.appendChild(tools);
 
-  const qrText=document.getElementById('pcQrText'),qrBtn=document.getElementById('pcQrGenerate'),qrImg=document.getElementById('pcQrImage'),qrPreview=document.getElementById('pcQrPreview'),qrOpen=document.getElementById('pcQrOpen');
+  const qrTypeButtons=[...document.querySelectorAll('.pc-qr-type')];
+  const qrFieldGroups=[...document.querySelectorAll('.pc-qr-fields')];
+  const qrBtn=document.getElementById('pcQrGenerate'),qrImg=document.getElementById('pcQrImage'),qrPreview=document.getElementById('pcQrPreview'),qrOpen=document.getElementById('pcQrOpen'),qrError=document.getElementById('pcQrError');
+  const wifiSecurity=document.getElementById('pcQrWifiSecurity'),wifiPasswordWrap=document.getElementById('pcQrWifiPasswordWrap');
+  let qrType='whatsapp';
+
+  const resetQrResult=()=>{qrError.textContent='';qrPreview.style.display='none';qrOpen.style.display='none';qrImg.removeAttribute('src');};
+  const setQrType=type=>{
+    qrType=type;
+    qrTypeButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.qrType===type));
+    qrFieldGroups.forEach(group=>group.classList.toggle('active',group.dataset.qrFields===type));
+    resetQrResult();
+  };
+  qrTypeButtons.forEach(btn=>btn.addEventListener('click',()=>setQrType(btn.dataset.qrType)));
+  wifiSecurity?.addEventListener('change',()=>{wifiPasswordWrap.style.display=wifiSecurity.value==='nopass'?'none':'grid';});
+
+  const escapeWifi=value=>String(value||'').replace(/([\\;,:"])/g,'\\$1');
+  const buildQrData=()=>{
+    if(qrType==='whatsapp'){
+      const raw=document.getElementById('pcQrWhatsappNumber').value.trim();
+      const number=raw.replace(/\D/g,'');
+      const message=document.getElementById('pcQrWhatsappMessage').value.trim();
+      if(number.length<8)throw new Error('Ingresá un número de WhatsApp válido con código de país.');
+      return `https://wa.me/${number}${message?`?text=${encodeURIComponent(message)}`:''}`;
+    }
+    if(qrType==='wifi'){
+      const ssid=document.getElementById('pcQrWifiName').value.trim();
+      const security=document.getElementById('pcQrWifiSecurity').value;
+      const password=document.getElementById('pcQrWifiPassword').value;
+      if(!ssid)throw new Error('Ingresá el nombre de la red Wi‑Fi.');
+      if(security!=='nopass'&&!password)throw new Error('Ingresá la contraseña del Wi‑Fi.');
+      return `WIFI:T:${security};S:${escapeWifi(ssid)};P:${security==='nopass'?'':escapeWifi(password)};;`;
+    }
+    if(qrType==='text'){
+      const text=document.getElementById('pcQrPlainText').value.trim();
+      if(!text)throw new Error('Escribí el texto que querés poner en el QR.');
+      return text;
+    }
+    const value=document.getElementById('pcQrLink').value.trim();
+    if(!value)throw new Error('Ingresá el enlace que querés compartir.');
+    return /^[a-z][a-z0-9+.-]*:\/\//i.test(value)?value:`https://${value}`;
+  };
+
   qrBtn?.addEventListener('click',()=>{
-    const text=qrText?.value.trim();
-    if(!text){qrText?.focus();return;}
-    const url=`https://api.qrserver.com/v1/create-qr-code/?size=500x500&margin=16&data=${encodeURIComponent(text)}`;
-    qrImg.src=url;qrPreview.style.display='block';qrOpen.href=url;qrOpen.style.display='inline-flex';
+    resetQrResult();
+    try{
+      const data=buildQrData();
+      const url=`https://api.qrserver.com/v1/create-qr-code/?size=500x500&margin=16&data=${encodeURIComponent(data)}`;
+      qrImg.src=url;qrPreview.style.display='block';qrOpen.href=url;qrOpen.style.display='inline-flex';
+    }catch(err){qrError.textContent=err?.message||'Revisá los datos e intentá de nuevo.';}
   });
 
   const rateInput=document.getElementById('pcRate'),arsInput=document.getElementById('pcArs'),usdtInput=document.getElementById('pcUsdt'),result=document.getElementById('pcConversionResult'),saved=document.getElementById('pcRateSaved');
