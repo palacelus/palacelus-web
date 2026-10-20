@@ -82,9 +82,13 @@ if(quickGrid&&!document.getElementById('catalogo-macbook-link')){
 const androidToolCards=[...document.querySelectorAll('#software .app-card')];
 const settingsCard=androidToolCards.find(a=>a.querySelector('strong')?.textContent.trim()==='Ajustes');
 const accessibilityCard=androidToolCards.find(a=>a.querySelector('strong')?.textContent.trim()==='Accesibilidad');
+const securityCard=androidToolCards.find(a=>a.querySelector('strong')?.textContent.trim()==='Seguridad');
 if(settingsCard){
   settingsCard.href='intent://com.android.settings/#Intent;scheme=android-app;end';
 }
 if(accessibilityCard){
   accessibilityCard.href='intent:#Intent;action=android.settings.ACCESSIBILITY_SETTINGS;package=com.android.settings;component=com.android.settings/.Settings$AccessibilitySettingsActivity;end';
+}
+if(securityCard){
+  securityCard.href='intent:#Intent;action=android.settings.SECURITY_SETTINGS;category=android.intent.category.DEFAULT;package=com.android.settings;end';
 }
