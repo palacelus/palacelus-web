@@ -76,3 +76,15 @@ if(quickGrid&&!document.getElementById('catalogo-macbook-link')){
   const catalogCard=document.getElementById('catalogo-celulares-link');
   if(catalogCard?.nextSibling)quickGrid.insertBefore(macCard,catalogCard.nextSibling);else quickGrid.appendChild(macCard);
 }
+
+// Mejora de compatibilidad para accesos a Configuración desde Chrome Android.
+// Algunos navegadores no resuelven intents sin esquema/componente explícito.
+const androidToolCards=[...document.querySelectorAll('#software .app-card')];
+const settingsCard=androidToolCards.find(a=>a.querySelector('strong')?.textContent.trim()==='Ajustes');
+const accessibilityCard=androidToolCards.find(a=>a.querySelector('strong')?.textContent.trim()==='Accesibilidad');
+if(settingsCard){
+  settingsCard.href='intent://com.android.settings/#Intent;scheme=android-app;end';
+}
+if(accessibilityCard){
+  accessibilityCard.href='intent:#Intent;action=android.settings.ACCESSIBILITY_SETTINGS;package=com.android.settings;component=com.android.settings/.Settings$AccessibilitySettingsActivity;end';
+}
