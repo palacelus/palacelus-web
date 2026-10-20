@@ -117,3 +117,64 @@ if(downloadLinks){
     downloadLinks.appendChild(anydesk);
   }
 }
+
+// Utilidades rápidas: generador QR y calculadora ARS / USD / USDT.
+const utilityStyle=document.createElement('style');
+utilityStyle.textContent=`
+.pc-tools{margin-top:28px;padding-top:26px;border-top:1px solid #252e37}.pc-tools h3{margin:0 0 6px;font-size:25px}.pc-tools>p{margin:0 0 16px;color:#98a3ae}.pc-tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pc-tool{background:#12171c;border:1px solid #252e37;border-radius:20px;padding:18px}.pc-tool h4{margin:0 0 6px;font-size:18px}.pc-tool p{margin:0 0 14px;color:#8f9aa6;font-size:13px;line-height:1.4}.pc-field{display:grid;gap:6px;margin-top:10px}.pc-field label{font-size:12px;color:#aeb8c2;font-weight:800}.pc-field input,.pc-field textarea{width:100%;background:#0f1419;color:#fff;border:1px solid #2c3741;border-radius:12px;padding:12px 13px;outline:none}.pc-field textarea{min-height:86px;resize:vertical}.pc-field input:focus,.pc-field textarea:focus{border-color:#2dd4a7}.pc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pc-result{margin-top:12px;background:#0d1317;border:1px solid #26313a;border-radius:13px;padding:12px 13px;font-weight:900}.pc-qr-preview{display:none;margin-top:14px;text-align:center;background:#fff;border-radius:15px;padding:14px}.pc-qr-preview img{display:block;max-width:260px;width:100%;height:auto;margin:auto}.pc-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.pc-actions .btn{flex:1 1 150px}.pc-mini{font-size:11px;color:#7f8b96;margin-top:8px}.pc-rate-saved{color:#2dd4a7;font-size:11px;margin-top:6px;min-height:16px}
+@media(max-width:760px){.pc-tools-grid{grid-template-columns:1fr}.pc-row{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.pc-row{grid-template-columns:1fr}}
+`;
+document.head.appendChild(utilityStyle);
+
+const softwareContainer=document.querySelector('#software .container');
+if(softwareContainer&&!document.getElementById('pc-tools')){
+  const tools=document.createElement('div');
+  tools.id='pc-tools';
+  tools.className='pc-tools';
+  tools.innerHTML=`
+    <div class="eyebrow">UTILIDADES RÁPIDAS</div>
+    <h3>Herramientas PalaCelus</h3>
+    <p>Utilidades rápidas para usar desde el taller, el celular o una PC.</p>
+    <div class="pc-tools-grid">
+      <div class="pc-tool">
+        <h4>🔳 Generador de QR</h4>
+        <p>Pegá un link, texto, WhatsApp, Wi‑Fi o dato y generá un QR para mostrar o guardar.</p>
+        <div class="pc-field"><label for="pcQrText">Texto o enlace</label><textarea id="pcQrText" placeholder="Ej: https://palacelus.com.ar/"></textarea></div>
+        <div class="pc-actions"><button class="btn primary" id="pcQrGenerate" type="button">Generar QR</button><a class="btn" id="pcQrOpen" href="#" target="_blank" rel="noopener noreferrer" style="display:none">Abrir / guardar</a></div>
+        <div class="pc-qr-preview" id="pcQrPreview"><img id="pcQrImage" alt="QR generado"></div>
+      </div>
+      <div class="pc-tool">
+        <h4>💵 Calculadora USD / USDT</h4>
+        <p>Ingresá tu cotización del día y convertí pesos ↔ USD/USDT al instante.</p>
+        <div class="pc-field"><label for="pcRate">Cotización ARS por 1 USD/USDT</label><input id="pcRate" inputmode="decimal" placeholder="Ej: 1600"></div>
+        <div class="pc-rate-saved" id="pcRateSaved"></div>
+        <div class="pc-row">
+          <div class="pc-field"><label for="pcArs">Pesos (ARS)</label><input id="pcArs" inputmode="decimal" placeholder="Ej: 160000"></div>
+          <div class="pc-field"><label for="pcUsdt">USD / USDT</label><input id="pcUsdt" inputmode="decimal" placeholder="Ej: 100"></div>
+        </div>
+        <div class="pc-result" id="pcConversionResult">Cargá una cotización y un importe.</div>
+        <div class="pc-mini">La cotización queda guardada solamente en este navegador.</div>
+      </div>
+    </div>`;
+  softwareContainer.appendChild(tools);
+
+  const qrText=document.getElementById('pcQrText'),qrBtn=document.getElementById('pcQrGenerate'),qrImg=document.getElementById('pcQrImage'),qrPreview=document.getElementById('pcQrPreview'),qrOpen=document.getElementById('pcQrOpen');
+  qrBtn?.addEventListener('click',()=>{
+    const text=qrText?.value.trim();
+    if(!text){qrText?.focus();return;}
+    const url=`https://api.qrserver.com/v1/create-qr-code/?size=500x500&margin=16&data=${encodeURIComponent(text)}`;
+    qrImg.src=url;qrPreview.style.display='block';qrOpen.href=url;qrOpen.style.display='inline-flex';
+  });
+
+  const rateInput=document.getElementById('pcRate'),arsInput=document.getElementById('pcArs'),usdtInput=document.getElementById('pcUsdt'),result=document.getElementById('pcConversionResult'),saved=document.getElementById('pcRateSaved');
+  const parseLocalNumber=v=>{const s=String(v||'').trim().replace(/\s/g,'');if(!s)return NaN;if(s.includes(',')&&s.includes('.')){return s.lastIndexOf(',')>s.lastIndexOf('.')?Number(s.replace(/\./g,'').replace(',','.')):Number(s.replace(/,/g,''));}if(s.includes(','))return Number(s.replace(',','.'));return Number(s);};
+  const fmtArs=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:2}).format(n);
+  const fmtUsdt=n=>new Intl.NumberFormat('es-AR',{minimumFractionDigits:0,maximumFractionDigits:4}).format(n);
+  const savedRate=localStorage.getItem('palacelus_usdt_rate');
+  if(savedRate){rateInput.value=savedRate;saved.textContent='✓ Cotización guardada';}
+  const saveRate=()=>{const rate=parseLocalNumber(rateInput.value);if(rate>0){localStorage.setItem('palacelus_usdt_rate',rateInput.value);saved.textContent='✓ Cotización guardada';}else saved.textContent='';};
+  const fromArs=()=>{const rate=parseLocalNumber(rateInput.value),ars=parseLocalNumber(arsInput.value);if(!(rate>0)||!(ars>=0)){result.textContent='Cargá una cotización y un importe.';return;}const usdt=ars/rate;usdtInput.value=Number.isFinite(usdt)?usdt.toFixed(2):'';result.textContent=`${fmtArs(ars)} = ${fmtUsdt(usdt)} USD/USDT`;saveRate();};
+  const fromUsdt=()=>{const rate=parseLocalNumber(rateInput.value),usdt=parseLocalNumber(usdtInput.value);if(!(rate>0)||!(usdt>=0)){result.textContent='Cargá una cotización y un importe.';return;}const ars=usdt*rate;arsInput.value=Number.isFinite(ars)?ars.toFixed(2):'';result.textContent=`${fmtUsdt(usdt)} USD/USDT = ${fmtArs(ars)}`;saveRate();};
+  arsInput?.addEventListener('input',fromArs);usdtInput?.addEventListener('input',fromUsdt);rateInput?.addEventListener('change',()=>{saveRate();if(arsInput.value)fromArs();else if(usdtInput.value)fromUsdt();});
+}
