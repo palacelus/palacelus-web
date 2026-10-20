@@ -92,3 +92,28 @@ if(accessibilityCard){
 if(securityCard){
   securityCard.href='intent:#Intent;action=android.settings.SECURITY_SETTINGS;category=android.intent.category.DEFAULT;package=com.android.settings;end';
 }
+
+// Descargas directas oficiales de asistencia remota para Windows.
+const downloadLinks=document.querySelector('#software .download-links');
+if(downloadLinks){
+  if(!document.getElementById('download-ultraviewer')){
+    const ultra=document.createElement('a');
+    ultra.id='download-ultraviewer';
+    ultra.className='btn';
+    ultra.href='https://www.ultraviewer.net/es/UltraViewer_setup_6.6_es.exe';
+    ultra.target='_blank';
+    ultra.rel='noopener noreferrer';
+    ultra.textContent='⬇ UltraViewer';
+    downloadLinks.appendChild(ultra);
+  }
+  if(!document.getElementById('download-anydesk')){
+    const anydesk=document.createElement('a');
+    anydesk.id='download-anydesk';
+    anydesk.className='btn';
+    anydesk.href='https://download.anydesk.com/AnyDesk.exe';
+    anydesk.target='_blank';
+    anydesk.rel='noopener noreferrer';
+    anydesk.textContent='⬇ AnyDesk';
+    downloadLinks.appendChild(anydesk);
+  }
+}
