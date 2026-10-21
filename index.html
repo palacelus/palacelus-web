@@ -102,5 +102,35 @@
   <nav class="bottom-nav"><button data-go="home"><span>⌂</span>Inicio</button><button data-go="repuestos"><span>🧩</span>Repuestos</button><button data-go="cotizar"><span>🔧</span>Cotizar</button><button data-go="contacto"><span>💬</span>Contacto</button></nav>
   <a class="wa-float" href="https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
   <script src="/script.js?v=20"></script>
+  <script>
+    (()=>{
+      const actions=document.querySelector('#frp-xiaomi-feature .frp-xiaomi-actions');
+      if(!actions||document.getElementById('frp-zte-btn'))return;
+      const xiaomi=actions.querySelector('.frp-xiaomi-btn');
+      const note=actions.querySelector('.frp-xiaomi-note');
+      if(!xiaomi)return;
+
+      const style=document.createElement('style');
+      style.textContent=`
+        #frp-xiaomi-feature .frp-xiaomi-actions{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px!important;align-items:stretch!important}
+        #frp-xiaomi-feature .frp-xiaomi-actions .btn{width:100%;min-height:54px;padding:13px 10px;font-size:13px;letter-spacing:.01em}
+        #frp-xiaomi-feature .frp-xiaomi-note{grid-column:1/-1;text-align:center;margin-top:1px}
+        #frp-zte-btn{background:linear-gradient(135deg,#087cf0,#075bb8)!important;border-color:#1590ff!important;color:#fff!important;box-shadow:0 10px 26px rgba(8,124,240,.25)}
+        #frp-zte-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+        @media(max-width:380px){#frp-xiaomi-feature .frp-xiaomi-actions .btn{font-size:12px;padding-left:7px;padding-right:7px}}
+      `;
+      document.head.appendChild(style);
+
+      xiaomi.textContent='🟠 FRP XIAOMI';
+      const zte=document.createElement('a');
+      zte.id='frp-zte-btn';
+      zte.className='btn';
+      zte.href='https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20FRP%20ZTE.%0AModelo%3A%20____%0AVersi%C3%B3n%20de%20Android%3A%20____';
+      zte.target='_blank';
+      zte.rel='noopener';
+      zte.textContent='🔵 FRP ZTE';
+      actions.insertBefore(zte,note||null);
+    })();
+  </script>
 </body>
 </html>
