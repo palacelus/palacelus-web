@@ -119,8 +119,9 @@
         #frp-zte-btn{background:linear-gradient(135deg,#ef4444,#991b1b)!important;border-color:#f87171!important}
         #frp-samsung-btn{background:linear-gradient(135deg,#1e5eff,#153fb4)!important;border-color:#4b80ff!important}
         #frp-motorola-btn{background:linear-gradient(135deg,#2c3138,#12161c)!important;border-color:#434b55!important}
+        #frp-iphone-btn{grid-column:1/-1;background:linear-gradient(135deg,#f8fafc,#cbd5e1)!important;border-color:#f8fafc!important;color:#111827!important;box-shadow:0 10px 28px rgba(255,255,255,.12)!important;font-size:14px!important;letter-spacing:.02em!important}
         #frp-xiaomi-feature .frp-xiaomi-actions .btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
-        @media(max-width:390px){#frp-xiaomi-feature .frp-xiaomi-actions{grid-template-columns:1fr!important}}
+        @media(max-width:390px){#frp-xiaomi-feature .frp-xiaomi-actions{grid-template-columns:1fr!important}#frp-iphone-btn{grid-column:1!important}}
       `;
       document.head.appendChild(style);
 
@@ -135,7 +136,7 @@
       if(title)title.textContent='FRP MULTIMARCA';
       if(logo)logo.textContent='FRP';
       if(text)text.innerHTML='¿Tenés un equipo con bloqueo FRP? Consultanos la <strong>marca, modelo y versión de Android</strong> y te confirmamos compatibilidad, valor y modalidad antes de comenzar.';
-      if(pills)pills.innerHTML='<span>⚡ Atención remota</span><span>📱 Xiaomi · ZTE · Samsung · Motorola</span><span>💬 Respuesta por WhatsApp</span>';
+      if(pills)pills.innerHTML='<span>⚡ Atención remota</span><span>📱 Xiaomi · ZTE · Samsung · Motorola · iPhone</span><span>💬 Respuesta por WhatsApp</span>';
       if(!actions||!xiaomi)return;
 
       xiaomi.textContent='🟠 FRP XIAOMI';
@@ -158,7 +159,8 @@
       makeBtn('frp-zte-btn','🔴 FRP ZTE','https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20FRP%20ZTE.%0AModelo%3A%20____%0AVersi%C3%B3n%20de%20Android%3A%20____');
       makeBtn('frp-samsung-btn','🔷 FRP SAMSUNG','https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20FRP%20Samsung.%0AModelo%3A%20____%0AVersi%C3%B3n%20de%20Android%3A%20____');
       makeBtn('frp-motorola-btn','⚫ FRP MOTOROLA','https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20FRP%20Motorola.%0AModelo%3A%20____%0AVersi%C3%B3n%20de%20Android%3A%20____');
-      if(note)note.textContent='Servicio sujeto a compatibilidad del modelo y versión.';
+      makeBtn('frp-iphone-btn','🍎 BYPASS IPHONE','https://wa.me/5491164676844?text=Hola%20PalaCelus%2C%20quiero%20consultar%20por%20un%20servicio%20para%20iPhone%20propio%20o%20autorizado.%0AModelo%3A%20____%0AVersi%C3%B3n%20de%20iOS%3A%20____%0AEstado%20del%20equipo%3A%20____');
+      if(note)note.textContent='Servicios sujetos a compatibilidad. Solo sobre equipos propios o con autorización del titular.';
     })();
   </script>
 </body>
