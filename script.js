@@ -35,6 +35,7 @@
       section.id='reacondicionados';
       section.className='panel';
       const wa=encodeURIComponent('Hola PalaCelus 👋 Quiero consultar por el Samsung Galaxy A21s 64GB azul reacondicionado.');
+      const waPoco=encodeURIComponent('Hola PalaCelus 👋 Quiero consultar por el POCO C75 256GB reacondicionado, en caja y estado igual a nuevo.');
       section.innerHTML=`
         <div class="container">
           <div class="panel-head"><div><div class="eyebrow">EQUIPOS REVISADOS</div><h2>Celulares reacondicionados</h2><p>Equipos probados por PalaCelus, listos para usar.</p></div><button class="back" type="button">← Inicio</button></div>
@@ -52,6 +53,22 @@
                 <div class="pc-specs"><span>💾 64 GB</span><span>🎨 Azul</span><span>✅ Funcionamiento verificado</span><span>🛡️ Garantía PalaCelus</span></div>
                 <div class="pc-used-price">Precio: consultar</div>
                 <div class="pc-used-actions"><a class="btn primary" href="https://wa.me/5491164676844?text=${wa}" target="_blank" rel="noopener">RESERVAR EQUIPO</a></div>
+              </div>
+            </article>
+
+            <article class="pc-used-card">
+              <div class="pc-used-media">
+                <img src="https://i02.appmifile.com/507_operator_sg/12/10/2024/acddbcf0f5e658e5c471971217df435a.png" alt="POCO C75 - imagen oficial de referencia" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <div class="pc-used-fallback">📱</div>
+                <div class="pc-photo-note">Imagen oficial de referencia · Xiaomi/POCO</div>
+              </div>
+              <div class="pc-used-info">
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pc-tag">♻️ Reacondicionado</span><span class="pc-tag blue">📦 En caja</span><span class="pc-tag gold">⭐ Igual a nuevo</span></div>
+                <h3>POCO C75</h3>
+                <p>Equipo en excelente estado, presentado en caja y prácticamente igual a nuevo. Revisado por PalaCelus y listo para usar.</p>
+                <div class="pc-specs"><span>💾 256 GB</span><span>📦 En caja</span><span>✨ Estado igual a nuevo</span><span>✅ Funcionamiento verificado</span></div>
+                <div class="pc-used-price">Precio: consultar</div>
+                <div class="pc-used-actions"><a class="btn primary" href="https://wa.me/5491164676844?text=${waPoco}" target="_blank" rel="noopener">RESERVAR EQUIPO</a></div>
               </div>
             </article>
           </div>
