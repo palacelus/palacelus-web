@@ -36,6 +36,7 @@
       section.className='panel';
       const wa=encodeURIComponent('Hola PalaCelus 👋 Quiero consultar por el Samsung Galaxy A21s 64GB azul reacondicionado.');
       const waPoco=encodeURIComponent('Hola PalaCelus 👋 Quiero consultar por el POCO C75 256GB reacondicionado, en caja y estado igual a nuevo.');
+      const waIphone=encodeURIComponent('Hola PalaCelus 👋 Quiero consultar por el iPhone 11 reacondicionado, libre de todo.');
       section.innerHTML=`
         <div class="container">
           <div class="panel-head"><div><div class="eyebrow">EQUIPOS REVISADOS</div><h2>Celulares reacondicionados</h2><p>Equipos probados por PalaCelus, listos para usar.</p></div><button class="back" type="button">← Inicio</button></div>
@@ -69,6 +70,22 @@
                 <div class="pc-specs"><span>💾 256 GB</span><span>📦 En caja</span><span>✨ Estado igual a nuevo</span><span>✅ Funcionamiento verificado</span></div>
                 <div class="pc-used-price">Precio: consultar</div>
                 <div class="pc-used-actions"><a class="btn primary" href="https://wa.me/5491164676844?text=${waPoco}" target="_blank" rel="noopener">RESERVAR EQUIPO</a></div>
+              </div>
+            </article>
+
+            <article class="pc-used-card">
+              <div class="pc-used-media">
+                <img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone_11-rosette-family-lineup-091019_big.jpg.large.jpg" alt="Apple iPhone 11 - imagen oficial de referencia" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+                <div class="pc-used-fallback">📱</div>
+                <div class="pc-photo-note">Imagen oficial de referencia · Apple</div>
+              </div>
+              <div class="pc-used-info">
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pc-tag">♻️ Reacondicionado</span><span class="pc-tag blue">🔓 Libre de todo</span><span class="pc-tag gold">✅ Revisado</span></div>
+                <h3>Apple iPhone 11</h3>
+                <p>Equipo reacondicionado, revisado por PalaCelus y libre de todo, listo para configurar y usar.</p>
+                <div class="pc-specs"><span>💾 Capacidad: consultar</span><span>🎨 Color: consultar</span><span>🔓 Libre de todo</span><span>✅ Funcionamiento verificado</span></div>
+                <div class="pc-used-price">Precio: consultar</div>
+                <div class="pc-used-actions"><a class="btn primary" href="https://wa.me/5491164676844?text=${waIphone}" target="_blank" rel="noopener">RESERVAR EQUIPO</a></div>
               </div>
             </article>
           </div>
