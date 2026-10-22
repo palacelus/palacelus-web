@@ -6,8 +6,8 @@
     const brand=document.getElementById('partsBrandFilter');
     const empty=document.getElementById('partsEmptyState');
     if(!panel||!grid||!search||!brand||!empty)return false;
-    if(panel.dataset.repuestosV3==='1')return true;
-    panel.dataset.repuestosV3='1';
+    if(panel.dataset.repuestosV4==='1')return true;
+    panel.dataset.repuestosV4='1';
 
     const intro=panel.querySelector('.pc-parts-intro');
     if(intro)intro.textContent='Agrupamos los repuestos por modelo para no publicar pieza por pieza. Elegí el equipo, decinos qué necesitás y te confirmamos disponibilidad en el momento.';
@@ -28,20 +28,37 @@
         status:'Disponible para repuestos',
         parts:'Cámaras · flex · parlantes · carcasa/tapa · botones · placa · conectores · otros',
         note:'Consultar pieza disponible'
+      },
+      {
+        brand:'Samsung',
+        model:'Galaxy A05',
+        search:'Samsung Galaxy A05 A05',
+        status:'Disponible para repuestos',
+        parts:'Cámaras · flex · parlantes · carcasa/tapa · botones · placa · conectores · otros',
+        note:'Consultar pieza disponible'
+      },
+      {
+        brand:'Motorola',
+        model:'Edge 30 Neo',
+        search:'Motorola Moto Edge 30 Neo Edge30Neo',
+        status:'Disponible para repuestos',
+        parts:'Cámaras · flex · parlantes · carcasa/tapa · botones · placa · conectores · otros',
+        note:'Consultar pieza disponible'
       }
     ];
 
     const normalize=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
     const makeCard=p=>{
-      const msg=encodeURIComponent(`Hola PalaCelus 👋 Estoy buscando un repuesto para Motorola ${p.model}.\n\nPieza que necesito: ____\n\n¿Lo tenés disponible?`);
-      return `<article class="pc-part-card"><div class="pc-part-visual">📱</div><div class="pc-part-body"><span class="pc-tag">🟢 ${p.status}</span><h3>Motorola ${p.model}</h3><p>Repuestos varios recuperados. Consultanos por la pieza y te confirmamos disponibilidad.</p><p class="pc-part-hints">${p.parts}</p><p style="margin:-7px 0 15px;color:#fbbf24;font-size:12px;font-weight:800">⚠️ ${p.note}</p><a class="btn primary" href="https://wa.me/5491164676844?text=${msg}" target="_blank" rel="noopener">CONSULTAR REPUESTO</a></div></article>`;
+      const fullName=`${p.brand} ${p.model}`;
+      const msg=encodeURIComponent(`Hola PalaCelus 👋 Estoy buscando un repuesto para ${fullName}.\n\nPieza que necesito: ____\n\n¿Lo tenés disponible?`);
+      return `<article class="pc-part-card"><div class="pc-part-visual">📱</div><div class="pc-part-body"><span class="pc-tag">🟢 ${p.status}</span><h3>${fullName}</h3><p>Repuestos varios recuperados. Consultanos por la pieza y te confirmamos disponibilidad.</p><p class="pc-part-hints">${p.parts}</p><p style="margin:-7px 0 15px;color:#fbbf24;font-size:12px;font-weight:800">⚠️ ${p.note}</p><a class="btn primary" href="https://wa.me/5491164676844?text=${msg}" target="_blank" rel="noopener">CONSULTAR REPUESTO</a></div></article>`;
     };
 
     const freshSearch=search.cloneNode(true);
     const freshBrand=brand.cloneNode(true);
     search.replaceWith(freshSearch);
     brand.replaceWith(freshBrand);
-    freshSearch.placeholder='Ej: E20, E14, G04, G04S...';
+    freshSearch.placeholder='Ej: E20, A05, G04S, Edge 30 Neo...';
 
     const render=()=>{
       const q=normalize(freshSearch.value.trim());
