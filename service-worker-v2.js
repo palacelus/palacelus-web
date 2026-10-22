@@ -1,9 +1,9 @@
-const CACHE = 'palacelus-pwa-v13';
+const CACHE = 'palacelus-pwa-v14';
 const CORE = [
   '/',
   '/store.html?v=2',
   '/styles.css',
-  '/script.js?v=21',
+  '/script.js?sw=v14',
   '/manifest-v2.webmanifest',
   '/pwa-ok-192.png',
   '/pwa-ok-512.png'
@@ -32,6 +32,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
+  const url = new URL(event.request.url);
+
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request, {cache:'no-store'})
@@ -47,7 +49,16 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  const url = new URL(event.request.url);
+  if (url.origin === self.location.origin && url.pathname === '/script.js') {
+    const fresh = new Request('/script.js?sw=v14', {cache:'reload'});
+    event.respondWith(
+      fetch(fresh, {cache:'no-store'})
+        .then(response => response)
+        .catch(() => caches.match('/script.js?sw=v14'))
+    );
+    return;
+  }
+
   if (url.origin === self.location.origin) {
     event.respondWith(
       fetch(event.request, {cache:'no-store'})
