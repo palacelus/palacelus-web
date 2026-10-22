@@ -26,7 +26,7 @@
       #frp-xiaomi-feature .frp-xiaomi-actions{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
       #frp-xiaomi-feature .frp-xiaomi-actions .btn{width:100%;min-height:54px;padding:13px 10px;font-size:13px;letter-spacing:.01em;border-radius:14px!important;color:#fff!important;box-shadow:0 10px 26px rgba(0,0,0,.18)}
       #frp-xiaomi-btn{background:linear-gradient(135deg,#f97316,#dd6b12)!important;border-color:#fb923c!important}
-      #frp-zte-btn{background:linear-gradient(135deg,#2563eb,#1d4ed8)!important;border-color:#60a5fa!important}
+      #frp-zte-btn{background:linear-gradient(135deg,#ef4444,#991b1b)!important;border-color:#f87171!important;color:#fff!important}
       #frp-samsung-btn{background:linear-gradient(135deg,#1e5eff,#153fb4)!important;border-color:#4b80ff!important}
       #frp-motorola-btn{background:linear-gradient(135deg,#2c3138,#12161c)!important;border-color:#434b55!important}
       #frp-iphone-btn{grid-column:1/-1;background:linear-gradient(135deg,#1f2937,#090d12)!important;border-color:#64748b!important;color:#f8fafc!important}
@@ -58,7 +58,7 @@
       <div class="frp-xiaomi-pills"><span>⚡ Atención remota</span><span>📱 Xiaomi · ZTE · Samsung · Motorola · iPhone</span><span>💬 Respuesta por WhatsApp</span></div>
       <div class="frp-xiaomi-actions">
         <a id="frp-xiaomi-btn" class="btn" href="${links.xiaomi}" target="_blank" rel="noopener">🟠 FRP XIAOMI</a>
-        <a id="frp-zte-btn" class="btn" href="${links.zte}" target="_blank" rel="noopener">🔵 FRP ZTE</a>
+        <a id="frp-zte-btn" class="btn" href="${links.zte}" target="_blank" rel="noopener">🔴 FRP ZTE</a>
         <a id="frp-samsung-btn" class="btn" href="${links.samsung}" target="_blank" rel="noopener">🔷 FRP SAMSUNG</a>
         <a id="frp-motorola-btn" class="btn" href="${links.motorola}" target="_blank" rel="noopener">⚫ FRP MOTOROLA</a>
         <a id="frp-iphone-btn" class="btn" href="${links.iphone}" target="_blank" rel="noopener">🍎 BYPASS IPHONE</a>
